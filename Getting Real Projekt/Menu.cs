@@ -12,9 +12,9 @@ namespace Getting_Real_Projekt
 
         private List<string> menuList = new List<string>()
         {
-            "1. Noget noget",
-            "2. Noget andet",
-            "3. Noget",
+            "1. Opret Reservation",
+            "2. Køb af entre",
+            "3. Køb af entre og menu",
             "4. Exit"
         };
 
@@ -31,10 +31,32 @@ namespace Getting_Real_Projekt
 
                 switch (selectedMenu)
                 {
-                    case "1. Noget noget":
-                        Console.WriteLine("1");
+                    case "1. Opret Reservation":
+                        Console.WriteLine("Kundens Navn");
+                        Console.CursorVisible = true;
+                        string name = Console.ReadLine();
+                        Console.WriteLine("Kundens tlf");
+                        string tlf = Console.ReadLine();
+                        Console.WriteLine("Dato for reservation eks. 2008, 5, 1, 8, 30, 52 hvor det er år, måned, dag, time, minutter og sekunder");
+                        string time = Console.ReadLine();
+                        DateTime date = DateTime.Parse(time);
+                        control.InsertReservation(name, tlf, date);
                         Console.ReadKey();
+                        Console.CursorVisible = false;
                         Console.Clear();
+                        break;
+                    case "2. Køb af entre":
+                        Console.WriteLine("Dato'en for køb eks. 2008, 5, 1, 8, 30, 52 hvor det er år, måned, dag, time, minutter og sekunder");
+                        Console.CursorVisible = true;
+                        string time2 = Console.ReadLine();
+                        DateTime date2 = DateTime.Parse(time2);
+                        control.InsertEntry(date2);
+                        Console.ReadKey();
+                        Console.CursorVisible = false;
+                        Console.Clear();
+                        break;
+                    case "3. Køb af entre og menu":
+
                         break;
                     case "4. Exit":
                         running = false;
