@@ -10,6 +10,8 @@ namespace Getting_Real_Projekt
     {
         static void Main(string[] args)
         {
+            Menu menu = new Menu();
+            menu.Show();
         }
     }
 }
