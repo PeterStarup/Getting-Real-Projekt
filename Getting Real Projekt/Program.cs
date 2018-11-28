@@ -13,5 +13,6 @@ namespace Getting_Real_Projekt
             Menu menu = new Menu();
             menu.Show();
         }
+
     }
 }
