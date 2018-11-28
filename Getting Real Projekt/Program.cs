@@ -10,9 +10,14 @@ namespace Getting_Real_Projekt
     {
         static void Main(string[] args)
         {
+            Program pro = new Program();
+            pro.Run();
+        }
+
+        void Run()
+        {
             Menu menu = new Menu();
             menu.Show();
         }
-
     }
 }

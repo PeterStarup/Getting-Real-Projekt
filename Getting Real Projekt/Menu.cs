@@ -18,6 +18,8 @@ namespace Getting_Real_Projekt
             "4. Exit"
         };
 
+        Controller control = new Controller();
+
         public void Show()
         {
             bool running = true;
