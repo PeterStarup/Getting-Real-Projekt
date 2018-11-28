@@ -8,18 +8,26 @@ namespace Getting_Real_Projekt
 {
     public class SQLController
     {
-        public void InsertReservation(string name, string tlfNumber, DateTime timeOfReservation)
+        bool spWorked;
+        public bool InsertReservation(string name, string tlfNumber, DateTime timeOfReservation)
         {
-
+            spWorked = false;
+            return spWorked;
         }
-        public void InsertEntry(DateTime date)
-        {            
-        }
-        public void ReadData()
-        {           
-        }
-        public void ReadSpecificData(string row)
+        public bool InsertEntry(DateTime date)
         {
+            spWorked = false;
+            return spWorked;
+        }
+        public bool ReadData()
+        {
+            spWorked = false;
+            return spWorked;
+        }
+        public bool ReadSpecificData(string row)
+        {
+            spWorked = false;
+            return spWorked;
         }
     }
 }
