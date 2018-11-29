@@ -32,31 +32,13 @@ namespace Getting_Real_Projekt
                 switch (selectedMenu)
                 {
                     case "1. Opret Reservation":
-                        Console.WriteLine("Kundens Navn");
-                        Console.CursorVisible = true;
-                        string name = Console.ReadLine();
-                        Console.WriteLine("Kundens tlf");
-                        string tlf = Console.ReadLine();
-                        Console.WriteLine("Dato for reservation eks. 2008, 5, 1, 8, 30, 52 hvor det er år, måned, dag, time, minutter og sekunder");
-                        string time = Console.ReadLine();
-                        DateTime date = DateTime.Parse(time);
-                        control.InsertReservation(name, tlf, date);
-                        Console.ReadKey();
-                        Console.CursorVisible = false;
-                        Console.Clear();
+                        Opretreservation();
                         break;
                     case "2. Køb af entre":
-                        Console.WriteLine("Dato'en for køb eks. 2008, 5, 1, 8, 30, 52 hvor det er år, måned, dag, time, minutter og sekunder");
-                        Console.CursorVisible = true;
-                        string time2 = Console.ReadLine();
-                        DateTime date2 = DateTime.Parse(time2);
-                        control.InsertEntry(date2);
-                        Console.ReadKey();
-                        Console.CursorVisible = false;
-                        Console.Clear();
+                        KøbAfEntre();
                         break;
                     case "3. Køb af entre og menu":
-
+                        KøbAfEntreOgMenu();
                         break;
                     case "4. Exit":
                         running = false;
@@ -106,6 +88,45 @@ namespace Getting_Real_Projekt
             }
             Console.Clear();
             return "";
+        }
+
+        string name;
+        string tlf;
+        string time;
+        int numberOfPersons;
+
+        public void Opretreservation()
+        {
+            Console.WriteLine("Kundens Navn");
+            Console.CursorVisible = true;
+            Console.WriteLine("Kundens tlf");
+            tlf = Console.ReadLine();
+            Console.WriteLine("Dato for reservation eks. 2008, 5, 1, 8, 30, 52 hvor det er år, måned, dag, time, minutter og sekunder");
+            time = Console.ReadLine();
+            DateTime date = DateTime.Parse(time);
+            Console.WriteLine("Antal personer");
+            numberOfPersons = int.Parse(Console.ReadLine());
+            control.InsertReservation(name, tlf, date, numberOfPersons);
+            Console.ReadKey();
+            Console.CursorVisible = false;
+            Console.Clear();
+        }
+
+        public void KøbAfEntre()
+        {
+            Console.WriteLine("Dato'en for køb eks. 2008, 5, 1, 8, 30, 52 hvor det er år, måned, dag, time, minutter og sekunder");
+            Console.CursorVisible = true;
+            time = Console.ReadLine();
+            DateTime date = DateTime.Parse(time);
+            control.InsertEntry(date);
+            Console.ReadKey();
+            Console.CursorVisible = false;
+            Console.Clear();
+        }
+
+        public void KøbAfEntreOgMenu()
+        {
+            Console.WriteLine("Woot");
         }
     }
 }
