@@ -99,6 +99,7 @@ namespace Getting_Real_Projekt
         {
             Console.WriteLine("Kundens Navn");
             Console.CursorVisible = true;
+            name = Console.ReadLine();
             Console.WriteLine("Kundens tlf");
             tlf = Console.ReadLine();
             Console.WriteLine("Dato for reservation eks. 2008, 5, 1, 8, 30, 52 hvor det er år, måned, dag, time, minutter og sekunder");
