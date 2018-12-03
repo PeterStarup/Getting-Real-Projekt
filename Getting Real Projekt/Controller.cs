@@ -26,9 +26,9 @@ namespace Getting_Real_Projekt
         {
             Sqlcontroller.ReadData();
         }
-        public void ReadSpecificData(string row)
+        public void ReadSpecificData(DateTime date)
         {
-            Sqlcontroller.ReadSpecificData(row);
+            Sqlcontroller.ReadSpecificData(date);
         }
     }
 }

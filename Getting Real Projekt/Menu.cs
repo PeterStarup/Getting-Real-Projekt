@@ -15,6 +15,7 @@ namespace Getting_Real_Projekt
             "1. Opret Reservation",
             "2. Køb af entre",
             "3. Køb af entre og menu",
+            "5. Vis Data",
             "4. Exit"
         };
 
@@ -39,6 +40,9 @@ namespace Getting_Real_Projekt
                         break;
                     case "3. Køb af entre og menu":
                         KøbAfEntreOgMenu();
+                        break;
+                    case "5. Vis Data":
+                        VisData();
                         break;
                     case "4. Exit":
                         running = false;
@@ -128,6 +132,12 @@ namespace Getting_Real_Projekt
         public void KøbAfEntreOgMenu()
         {
             Console.WriteLine("Woot");
+        }
+
+        public void VisData()
+        {
+            control.ReadData();
+            Console.WriteLine("\n");
         }
     }
 }
