@@ -16,6 +16,7 @@ namespace Getting_Real_Projekt
             "2. Køb af entre",
             "3. Køb af entre og menu",
             "5. Vis Data",
+            "6. Vis specifik data",
             "4. Exit"
         };
 
@@ -39,10 +40,13 @@ namespace Getting_Real_Projekt
                         KøbAfEntre();
                         break;
                     case "3. Køb af entre og menu":
-                        KøbAfEntreOgMenu();
+                        //KøbAfEntreOgMenu();
                         break;
                     case "5. Vis Data":
                         VisData();
+                        break;
+                    case "6. Vis specifik data":
+                        VisSpecData();
                         break;
                     case "4. Exit":
                         running = false;
@@ -119,25 +123,30 @@ namespace Getting_Real_Projekt
 
         public void KøbAfEntre()
         {
-            Console.WriteLine("Dato'en for køb eks. 2008, 5, 1, 8, 30, 52 hvor det er år, måned, dag, time, minutter og sekunder");
-            Console.CursorVisible = true;
-            time = Console.ReadLine();
-            DateTime date = DateTime.Parse(time);
+            DateTime date = DateTime.Now;
             control.InsertEntry(date);
-            Console.ReadKey();
-            Console.CursorVisible = false;
-            Console.Clear();
+            Console.WriteLine("Dato " + date);
+            Console.WriteLine("\n");
         }
 
-        public void KøbAfEntreOgMenu()
-        {
-            Console.WriteLine("Woot");
-        }
+        //public void KøbAfEntreOgMenu()
+        //{
+        //    control.InsertEntryAndReservation();
+        //}
 
         public void VisData()
         {
             control.ReadData();
             Console.WriteLine("\n");
+        }
+
+        public void VisSpecData()
+        {
+            Console.WriteLine("Indsæt dato");
+            Console.WriteLine("eks: 2008-01-01");
+            string da = Console.ReadLine();
+            DateTime date = DateTime.Parse(da);
+            control.ReadSpecificData(date);
         }
     }
 }
