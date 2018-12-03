@@ -48,6 +48,34 @@ namespace Getting_Real_Projekt
         }
         public bool ReadData()
         {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    con.Open();
+
+                    SqlCommand cmd = new SqlCommand("ReadData", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    SqlDataReader read = cmd.ExecuteReader();
+
+                    if (read.HasRows)
+                    {
+                        while (read.Read())
+                        {
+                            string id = read["PurchaseId"].ToString();
+                            string date = read["PurchaseDate"].ToString();
+                            string numberofitems = read["NumberOfItems"].ToString();
+                            Console.WriteLine(id + " " + date + " " + numberofitems);
+                        }
+                    }
+                }
+                catch (SqlException e)
+                {
+                    Console.WriteLine("Duuuhh " + e.Message);
+                }
+            }
+
             spWorked = false;
             return spWorked;
         }
