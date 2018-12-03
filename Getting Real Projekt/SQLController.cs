@@ -43,6 +43,25 @@ namespace Getting_Real_Projekt
         }
         public bool InsertEntry(DateTime date)
         {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    con.Open();
+
+                    SqlCommand cmd = new SqlCommand("spGRInsertPurchase", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(new SqlParameter("@PurchaseDate", date));
+
+                    cmd.ExecuteNonQuery();
+                }
+                catch (SqlException e)
+                {
+                    Console.WriteLine("Woopsi " + e.Message);
+                }
+            }
+
             spWorked = false;
             return spWorked;
         }
@@ -79,8 +98,37 @@ namespace Getting_Real_Projekt
             spWorked = false;
             return spWorked;
         }
-        public bool ReadSpecificData(string row)
+        public bool ReadSpecificData(DateTime date)
         {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    con.Open();
+
+                    SqlCommand cmd = new SqlCommand("ReadSpecData", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@Dato", date));
+
+                    SqlDataReader read = cmd.ExecuteReader();
+
+                    if (read.HasRows)
+                    {
+                        while (read.Read())
+                        {
+                            string id = read["PurchaseId"].ToString();
+                            string dat = read["PurchaseDate"].ToString();
+                            string numberofitems = read["NumberOfItems"].ToString();
+                            Console.WriteLine(id + " " + dat + " " + numberofitems);
+                        }
+                    }
+                }
+                catch (SqlException e)
+                {
+                    Console.WriteLine("Duuude " + e.Message);
+                }
+            }
+
             spWorked = false;
             return spWorked;
         }
