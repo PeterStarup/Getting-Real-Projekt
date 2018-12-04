@@ -15,9 +15,9 @@ namespace Getting_Real_Projekt
             "1. Opret Reservation",
             "2. Køb af entre",
             "3. Køb af entre og menu",
-            "5. Vis Data",
-            "6. Vis specifik data",
-            "4. Exit"
+            "4. Vis Data",
+            "5. Vis specifik data",
+            "0. Exit"
         };
 
         Controller control = new Controller();
@@ -42,13 +42,13 @@ namespace Getting_Real_Projekt
                     case "3. Køb af entre og menu":
                         //KøbAfEntreOgMenu();
                         break;
-                    case "5. Vis Data":
+                    case "4. Vis Data":
                         VisData();
                         break;
-                    case "6. Vis specifik data":
+                    case "5. Vis specifik data":
                         VisSpecData();
                         break;
-                    case "4. Exit":
+                    case "0. Exit":
                         running = false;
                         break;
                 }
@@ -144,9 +144,11 @@ namespace Getting_Real_Projekt
         {
             Console.WriteLine("Indsæt dato");
             Console.WriteLine("eks: 2008-01-01");
+            Console.CursorVisible = true;
             string da = Console.ReadLine();
             DateTime date = DateTime.Parse(da);
             control.ReadSpecificData(date);
+            Console.CursorVisible = false;
         }
     }
 }
