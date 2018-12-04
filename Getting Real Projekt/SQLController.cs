@@ -22,11 +22,13 @@ namespace Getting_Real_Projekt
                 {
                     con.Open();
 
-                    SqlCommand cmd1 = new SqlCommand("spGRInsertCustomer", con);
+                    SqlCommand cmd1 = new SqlCommand("spGRInsertTableRes", con);
                     cmd1.CommandType = CommandType.StoredProcedure;
 
                     cmd1.Parameters.Add(new SqlParameter("@CustomerName", name));
                     cmd1.Parameters.Add(new SqlParameter("@CustomerTLF", tlfNumber));
+                    cmd1.Parameters.Add(new SqlParameter("@ReservationDate", timeOfReservation));
+                    cmd1.Parameters.Add(new SqlParameter("@NumberOfPersons", antalPersoner));
 
                     cmd1.ExecuteNonQuery();
                     spWorked = true;
@@ -84,6 +86,8 @@ namespace Getting_Real_Projekt
                         {
                             string id = read["PurchaseId"].ToString();
                             string date = read["PurchaseDate"].ToString();
+                            DateTime datetime = DateTime.Parse(date);
+                            date = datetime.ToString("yyyy-mm-dd");
                             string numberofitems = read["NumberOfItems"].ToString();
                             Console.WriteLine("Id: " + id + "| Purchase date: " + date + "| Number of items: " + numberofitems);
                         }
@@ -118,6 +122,8 @@ namespace Getting_Real_Projekt
                         {
                             string id = read["PurchaseId"].ToString();
                             string dat = read["PurchaseDate"].ToString();
+                            DateTime datetime = DateTime.Parse(dat);
+                            dat = datetime.ToString("yyyy-mm-dd hh:mm");
                             string numberofitems = read["NumberOfItems"].ToString();
                             Console.WriteLine("Id: " + id + "| Purchase date: " + dat + "| Number of items: " + numberofitems);
                         }

@@ -14,9 +14,8 @@ namespace Getting_Real_Projekt
         {
             "1. Opret Reservation",
             "2. Køb af entre",
-            "3. Køb af entre og menu",
-            "4. Vis Data",
-            "5. Vis specifik data",
+            "3. Vis Data",
+            "4. Vis specifik data",
             "0. Exit"
         };
 
@@ -39,13 +38,10 @@ namespace Getting_Real_Projekt
                     case "2. Køb af entre":
                         KøbAfEntre();
                         break;
-                    case "3. Køb af entre og menu":
-                        //KøbAfEntreOgMenu();
-                        break;
-                    case "4. Vis Data":
+                    case "3. Vis Data":
                         VisData();
                         break;
-                    case "5. Vis specifik data":
+                    case "4. Vis specifik data":
                         VisSpecData();
                         break;
                     case "0. Exit":
@@ -108,17 +104,17 @@ namespace Getting_Real_Projekt
             Console.WriteLine("Kundens Navn");
             Console.CursorVisible = true;
             name = Console.ReadLine();
-            Console.WriteLine("Kundens tlf");
+            Console.WriteLine("Kundens tlf nummer");
             tlf = Console.ReadLine();
-            Console.WriteLine("Dato for reservation eks. 2008, 5, 1, 8, 30, 52 hvor det er år, måned, dag, time, minutter og sekunder");
+            Console.WriteLine("Dato for reservation - Eks. 2018-12-28 18:30");
             time = Console.ReadLine();
             DateTime date = DateTime.Parse(time);
             Console.WriteLine("Antal personer");
             numberOfPersons = int.Parse(Console.ReadLine());
             control.InsertReservation(name, tlf, date, numberOfPersons);
-            Console.ReadKey();
+            Console.WriteLine("\n");
+            Console.WriteLine("Reservation er nu oprettet til den: " + time);
             Console.CursorVisible = false;
-            Console.Clear();
         }
 
         public void KøbAfEntre()
@@ -128,11 +124,6 @@ namespace Getting_Real_Projekt
             Console.WriteLine("Dato " + date);
             Console.WriteLine("\n");
         }
-
-        //public void KøbAfEntreOgMenu()
-        //{
-        //    control.InsertEntryAndReservation();
-        //}
 
         public void VisData()
         {
@@ -145,9 +136,11 @@ namespace Getting_Real_Projekt
             Console.WriteLine("Indsæt dato");
             Console.WriteLine("eks: 2008-01-01");
             Console.CursorVisible = true;
-            string da = Console.ReadLine();
-            DateTime date = DateTime.Parse(da);
+            time = Console.ReadLine();
+            DateTime date = DateTime.Parse(time);
+            Console.WriteLine("\n");
             control.ReadSpecificData(date);
+            Console.WriteLine("\n");
             Console.CursorVisible = false;
         }
     }

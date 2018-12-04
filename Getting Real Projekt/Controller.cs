@@ -17,11 +17,6 @@ namespace Getting_Real_Projekt
         {
             Sqlcontroller.InsertEntry(date);
         }
-        public void InsertEntryAndReservation(string name, string tlfNumber, DateTime timeOfReservation, DateTime date, int numberOfPersons)
-        {
-            Sqlcontroller.InsertReservation(name, tlfNumber, timeOfReservation, numberOfPersons);
-            Sqlcontroller.InsertEntry(date);
-        }
         public void ReadData()
         {
             Sqlcontroller.ReadData();
