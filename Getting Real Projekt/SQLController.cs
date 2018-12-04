@@ -87,7 +87,7 @@ namespace Getting_Real_Projekt
                             string id = read["PurchaseId"].ToString();
                             string date = read["PurchaseDate"].ToString();
                             DateTime datetime = DateTime.Parse(date);
-                            date = datetime.ToString("yyyy-mm-dd");
+                            date = datetime.ToString("yyyy-MM-dd");
                             string numberofitems = read["NumberOfItems"].ToString();
                             Console.WriteLine("Id: " + id + "| Purchase date: " + date + "| Number of items: " + numberofitems);
                         }
@@ -123,7 +123,7 @@ namespace Getting_Real_Projekt
                             string id = read["PurchaseId"].ToString();
                             string dat = read["PurchaseDate"].ToString();
                             DateTime datetime = DateTime.Parse(dat);
-                            dat = datetime.ToString("yyyy-mm-dd hh:mm");
+                            dat = datetime.ToString("yyyy-MM-dd hh:mm");
                             string numberofitems = read["NumberOfItems"].ToString();
                             Console.WriteLine("Id: " + id + "| Purchase date: " + dat + "| Number of items: " + numberofitems);
                         }
