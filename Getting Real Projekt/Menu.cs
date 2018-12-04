@@ -134,7 +134,7 @@ namespace Getting_Real_Projekt
         public void VisSpecData()
         {
             Console.WriteLine("Indsæt dato");
-            Console.WriteLine("eks: 2008-01-01");
+            Console.WriteLine("eks: 2008-01-01 18:30");
             Console.CursorVisible = true;
             time = Console.ReadLine();
             DateTime date = DateTime.Parse(time);
