@@ -19,7 +19,7 @@ namespace Getting_Real_Projekt
             "0. Exit"
         };
 
-        Controller control = new Controller();
+        private Controller control = new Controller();
 
         public void Show()
         {
@@ -33,16 +33,16 @@ namespace Getting_Real_Projekt
                 switch (selectedMenu)
                 {
                     case "1. Opret Reservation":
-                        Opretreservation();
+                        CreateReservation();
                         break;
                     case "2. Køb af entre":
-                        KøbAfEntre();
+                        CreateEntry();
                         break;
                     case "3. Vis Data":
-                        VisData();
+                        ShowData();
                         break;
                     case "4. Vis specifik data":
-                        VisSpecData();
+                        ShowSpecificData();
                         break;
                     case "0. Exit":
                         running = false;
@@ -99,7 +99,7 @@ namespace Getting_Real_Projekt
         string time;
         int numberOfPersons;
 
-        public void Opretreservation()
+        public void CreateReservation()
         {
             Console.WriteLine("Kundens Navn");
             Console.CursorVisible = true;
@@ -117,7 +117,7 @@ namespace Getting_Real_Projekt
             Console.CursorVisible = false;
         }
 
-        public void KøbAfEntre()
+        public void CreateEntry()
         {
             DateTime date = DateTime.Now;
             control.InsertEntry(date);
@@ -125,13 +125,13 @@ namespace Getting_Real_Projekt
             Console.WriteLine("\n");
         }
 
-        public void VisData()
+        public void ShowData()
         {
             control.ReadData();
             Console.WriteLine("\n");
         }
 
-        public void VisSpecData()
+        public void ShowSpecificData()
         {
             Console.WriteLine("Indsæt dato");
             Console.WriteLine("eks: 2008-01-01 18:30");

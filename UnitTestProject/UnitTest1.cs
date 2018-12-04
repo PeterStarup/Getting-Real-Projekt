@@ -22,9 +22,9 @@ namespace UnitTestProject
         public void DoesMethodsExists()
         {
             Assert.AreEqual(false, sqlController.InsertEntry(date1));
-            Assert.AreEqual(false, sqlController.InsertReservation("test,", "test", date1));
+            Assert.AreEqual(false, sqlController.InsertReservation("test,", "test", date1,1));
             Assert.AreEqual(false, sqlController.ReadData());
-            Assert.AreEqual(false, sqlController.ReadSpecificData("test"));
+            Assert.AreEqual(false, sqlController.ReadSpecificData(date1));
         }
     }
 }
