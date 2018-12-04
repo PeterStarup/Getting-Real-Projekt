@@ -21,6 +21,8 @@ namespace Getting_Real_Projekt
 
         private Controller control = new Controller();
 
+        private bool spWorked;
+
         public void Show()
         {
             bool running = true;
@@ -39,7 +41,7 @@ namespace Getting_Real_Projekt
                         CreateEntry();
                         break;
                     case "3. Vis Data":
-                        ShowData();
+                        ReadData();
                         break;
                     case "4. Vis specifik data":
                         ShowSpecificData();
@@ -111,24 +113,55 @@ namespace Getting_Real_Projekt
             DateTime date = DateTime.Parse(time);
             Console.WriteLine("Antal personer");
             numberOfPersons = int.Parse(Console.ReadLine());
-            control.InsertReservation(name, tlf, date, numberOfPersons);
+            spWorked =  control.InsertReservation(name, tlf, date, numberOfPersons);
             Console.WriteLine("\n");
             Console.WriteLine("Reservation er nu oprettet til den: " + time);
             Console.CursorVisible = false;
+            if (spWorked == true)
+            {
+                Console.WriteLine("Operationen udført uden fejl");
+            }
+            else
+            {
+                Console.WriteLine("FEJL");
+            }
+
+            spWorked = false;
         }
 
         public void CreateEntry()
         {
+            
             DateTime date = DateTime.Now;
-            control.InsertEntry(date);
+            spWorked = control.InsertEntry(date);
             Console.WriteLine("Dato " + date);
             Console.WriteLine("\n");
+            if (spWorked == true)
+            {
+                Console.WriteLine("Operationen udført uden fejl");
+            }
+            else
+            {
+                Console.WriteLine("FEJL");
+            }
+
+            spWorked = false;
         }
 
-        public void ShowData()
+        public void ReadData()
         {
-            control.ReadData();
+            spWorked = control.ReadData();
             Console.WriteLine("\n");
+            if (spWorked == true)
+            {
+                Console.WriteLine("Operationen udført uden fejl");
+            } else
+            {
+                Console.WriteLine("FEJL");
+            }
+                
+
+            spWorked = false;
         }
 
         public void ShowSpecificData()
@@ -139,9 +172,19 @@ namespace Getting_Real_Projekt
             time = Console.ReadLine();
             DateTime date = DateTime.Parse(time);
             Console.WriteLine("\n");
-            control.ReadSpecificData(date);
+            spWorked=control.ReadSpecificData(date);
             Console.WriteLine("\n");
             Console.CursorVisible = false;
+            if (spWorked == true)
+            {
+                Console.WriteLine("Operationen udført uden fejl");
+            }
+            else
+            {
+                Console.WriteLine("FEJL");
+            }
+
+            spWorked = false;
         }
     }
 }

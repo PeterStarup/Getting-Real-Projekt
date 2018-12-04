@@ -36,11 +36,11 @@ namespace Getting_Real_Projekt
                 }
                 catch (SqlException e)
                 {
-
+                    spWorked = false;
                     Console.WriteLine("Ups " + e.Message);
                 }
             }
-            spWorked = false;
+            
             return spWorked;
         }
         public bool InsertEntry(DateTime date)
@@ -57,14 +57,17 @@ namespace Getting_Real_Projekt
                     cmd.Parameters.Add(new SqlParameter("@PurchaseDate", date));
 
                     cmd.ExecuteNonQuery();
+                    spWorked = true;
+                    return spWorked;
                 }
                 catch (SqlException e)
                 {
+                    spWorked = false;
                     Console.WriteLine("Woopsi " + e.Message);
                 }
             }
 
-            spWorked = false;
+            
             return spWorked;
         }
         public bool ReadData()
@@ -79,6 +82,8 @@ namespace Getting_Real_Projekt
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     SqlDataReader read = cmd.ExecuteReader();
+                    
+                    
 
                     if (read.HasRows)
                     {
@@ -92,14 +97,18 @@ namespace Getting_Real_Projekt
                             Console.WriteLine("Id: " + id + "| Purchase date: " + date + "| Number of items: " + numberofitems);
                         }
                     }
+                    spWorked = true;
+                    return spWorked;
+
                 }
                 catch (SqlException e)
                 {
+                    spWorked = false;
                     Console.WriteLine("Duuuhh " + e.Message);
                 }
             }
 
-            spWorked = false;
+            
             return spWorked;
         }
         public bool ReadSpecificData(DateTime date)
@@ -128,14 +137,17 @@ namespace Getting_Real_Projekt
                             Console.WriteLine("Id: " + id + "| Purchase date: " + dat + "| Number of items: " + numberofitems);
                         }
                     }
+                    spWorked = true;
+                    return spWorked;
                 }
                 catch (SqlException e)
                 {
+                    spWorked = false;
                     Console.WriteLine("Duuude " + e.Message);
                 }
             }
 
-            spWorked = false;
+           
             return spWorked;
         }
     }

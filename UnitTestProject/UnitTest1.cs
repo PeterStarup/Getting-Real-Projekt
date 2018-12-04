@@ -10,21 +10,35 @@ namespace UnitTestProject
     {
         SQLController sqlController;
         DateTime date1;
+        DateTime date2= DateTime.Now;
         [TestInitialize]
         public void CreateNewObject()
         {
             sqlController = new SQLController();
             date1 = new DateTime(2008, 12, 1, 18, 30, 52);
+            date2 = DateTime.Now;
         }
 
-
+       
         [TestMethod]
-        public void DoesMethodsExists()
+        public void InsertEntry()
         {
-            Assert.AreEqual(false, sqlController.InsertEntry(date1));
-            Assert.AreEqual(false, sqlController.InsertReservation("test,", "test", date1,1));
-            Assert.AreEqual(false, sqlController.ReadData());
-            Assert.AreEqual(false, sqlController.ReadSpecificData(date1));
+            Assert.AreEqual(true, sqlController.InsertEntry(date2));
+        }
+        [TestMethod]
+        public void InsertReservation()
+        {
+            Assert.AreEqual(true, sqlController.InsertReservation("unittest,", "unittest", date2, 6));
+        }
+        [TestMethod]
+        public void ReadData()
+        {
+            Assert.AreEqual(true, sqlController.ReadData());
+        }
+        [TestMethod]
+        public void ReadSpecificData()
+        {
+            Assert.AreEqual(true, sqlController.ReadSpecificData(date1));
         }
     }
 }

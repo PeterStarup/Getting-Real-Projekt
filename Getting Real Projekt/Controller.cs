@@ -9,21 +9,23 @@ namespace Getting_Real_Projekt
     public class Controller
     {
         SQLController Sqlcontroller = new SQLController();
-        public void InsertReservation(string name, string tlfNumber, DateTime timeOfReservation, int numberOfPersons)
+        private bool spWorked;
+        public bool InsertReservation(string name, string tlfNumber, DateTime timeOfReservation, int numberOfPersons)
         {
-            Sqlcontroller.InsertReservation(name, tlfNumber, timeOfReservation, numberOfPersons);
+            return spWorked = Sqlcontroller.InsertReservation(name, tlfNumber, timeOfReservation, numberOfPersons);
         }
-        public void InsertEntry(DateTime date)
+        public bool InsertEntry(DateTime date)
         {
-            Sqlcontroller.InsertEntry(date);
+            
+            return spWorked= Sqlcontroller.InsertEntry(date);
         }
-        public void ReadData()
+        public bool ReadData()
         {
-            Sqlcontroller.ReadData();
+            return spWorked = Sqlcontroller.ReadData();
         }
-        public void ReadSpecificData(DateTime date)
+        public bool ReadSpecificData(DateTime date)
         {
-            Sqlcontroller.ReadSpecificData(date);
+            return spWorked = Sqlcontroller.ReadSpecificData(date);
         }
     }
 }
