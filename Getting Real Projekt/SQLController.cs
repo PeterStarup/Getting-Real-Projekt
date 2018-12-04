@@ -13,7 +13,7 @@ namespace Getting_Real_Projekt
         private static string connectionString =
         "Server = ealSQL1.eal.local; Database = A_DB26_2018; User Id = A_STUDENT26; Password = A_OPENDB26;";
 
-        bool spWorked;
+        private bool spWorked;
         public bool InsertReservation(string name, string tlfNumber, DateTime timeOfReservation, int antalPersoner)
         {
             using (SqlConnection con = new SqlConnection(connectionString))
