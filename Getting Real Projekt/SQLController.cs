@@ -10,12 +10,14 @@ namespace Getting_Real_Projekt
 {
     public class SQLController
     {
+        
         private static string connectionString =
         "Server = ealSQL1.eal.local; Database = A_DB26_2018; User Id = A_STUDENT26; Password = A_OPENDB26;";
-
-        private bool spWorked;
+        
+        private bool spWorked; //Check if spWorked
         public bool InsertReservation(string name, string tlfNumber, DateTime timeOfReservation, int antalPersoner)
         {
+            //Using to make sure that connection closes after use
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 try
@@ -23,7 +25,7 @@ namespace Getting_Real_Projekt
                     con.Open();
 
                     SqlCommand cmd1 = new SqlCommand("spGRInsertTableRes", con);
-                    cmd1.CommandType = CommandType.StoredProcedure;
+                    cmd1.CommandType = CommandType.StoredProcedure; //SP
 
                     cmd1.Parameters.Add(new SqlParameter("@CustomerName", name));
                     cmd1.Parameters.Add(new SqlParameter("@CustomerTLF", tlfNumber));
