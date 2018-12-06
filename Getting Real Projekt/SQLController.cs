@@ -53,7 +53,7 @@ namespace Getting_Real_Projekt
                 {
                     con.Open();
 
-                    SqlCommand cmd = new SqlCommand("spGRInsertPurchase", con);
+                    SqlCommand cmd = new SqlCommand("spGRInsertEntry", con);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.Add(new SqlParameter("@PurchaseDate", date));

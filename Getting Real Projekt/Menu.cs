@@ -177,7 +177,7 @@ namespace Getting_Real_Projekt
             Console.CursorVisible = false;
             if (spWorked == true)
             {
-                Console.WriteLine("Operationen udført uden fejl");
+                Console.WriteLine("Operation udført uden fejl");
             }
             else
             {
