@@ -232,7 +232,17 @@ namespace Getting_Real_Projekt
                     break;
             }
             Console.CursorVisible = false;
-            //spWorked = control.FindReservation();
+            if (spWorked == true)
+            {
+                Console.WriteLine("Operation udført uden fejl");
+                Console.WriteLine("\n");
+            }
+            else
+            {
+                Console.WriteLine("FEJL");
+                Console.WriteLine("\n");
+            }
+            spWorked = false;
         }
     }
 }
