@@ -217,6 +217,7 @@ namespace Getting_Real_Projekt
             string input;
             string dat;
             input = Console.ReadLine();
+            Console.WriteLine("\n");
 
             switch (input)
             {
