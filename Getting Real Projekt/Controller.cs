@@ -27,5 +27,9 @@ namespace Getting_Real_Projekt
         {
             return spWorked = Sqlcontroller.ReadSpecificData(date);
         }
+        public bool FindReservation(DateTime date)
+        {
+            return spWorked = Sqlcontroller.FindReservation(date);
+        }
     }
 }

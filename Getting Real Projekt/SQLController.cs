@@ -152,5 +152,42 @@ namespace Getting_Real_Projekt
            
             return spWorked;
         }
+
+        public bool FindReservation(DateTime date)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    con.Open();
+
+                    SqlCommand cmd = new SqlCommand("spFindReservation", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@Date", date));
+
+                    SqlDataReader read = cmd.ExecuteReader();
+
+                    if (read.HasRows)
+                    {
+                        while (read.Read())
+                        {
+                            string resdate = read["ResDate"].ToString();
+                            string customername = read["CustomerName"].ToString();
+                            string customertlf = read["CustomerTLF"].ToString();
+                            string seats = read["Seats"].ToString();
+                            Console.WriteLine("Date: " + resdate + "| Customer name: " + customername + "| Customer TLF: " + customertlf + "| Number of seats: " + seats);
+                        }
+                    }
+                    spWorked = true;
+                    return spWorked;
+                }
+                catch (SqlException e)
+                {
+                    spWorked = false;
+                    Console.WriteLine("What? " + e.Message);
+                }
+            }
+            return spWorked;
+        }
     }
 }

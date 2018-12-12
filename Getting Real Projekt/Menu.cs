@@ -16,6 +16,7 @@ namespace Getting_Real_Projekt
             "2. Køb af entre",
             "3. Vis data",
             "4. Vis specifik data",
+            "5. Find reservation",
             "0. Afslut"
         };
 
@@ -45,6 +46,9 @@ namespace Getting_Real_Projekt
                         break;
                     case "4. Vis specifik data":
                         ShowSpecificData();
+                        break;
+                    case "5. Find reservation":
+                        FindReservation();
                         break;
                     case "0. Afslut":
                         running = false;
@@ -123,10 +127,12 @@ namespace Getting_Real_Projekt
             if (spWorked == true)
             {
                 Console.WriteLine("Operationen udført uden fejl");
+                Console.WriteLine("\n");
             }
             else
             {
                 Console.WriteLine("FEJL");
+                Console.WriteLine("\n");
             }
 
             spWorked = false;
@@ -143,10 +149,12 @@ namespace Getting_Real_Projekt
             if (spWorked == true)
             {
                 Console.WriteLine("Operationen udført uden fejl");
+                Console.WriteLine("\n");
             }
             else
             {
                 Console.WriteLine("FEJL");
+                Console.WriteLine("\n");
             }
 
             spWorked = false;
@@ -161,9 +169,12 @@ namespace Getting_Real_Projekt
             if (spWorked == true)
             {
                 Console.WriteLine("Operationen udført uden fejl");
-            } else
+                Console.WriteLine("\n");
+            }
+            else
             {
                 Console.WriteLine("FEJL");
+                Console.WriteLine("\n");
             }
                 
 
@@ -186,13 +197,41 @@ namespace Getting_Real_Projekt
             if (spWorked == true)
             {
                 Console.WriteLine("Operation udført uden fejl");
+                Console.WriteLine("\n");
             }
             else
             {
                 Console.WriteLine("FEJL");
+                Console.WriteLine("\n");
             }
 
             spWorked = false;
+        }
+
+        public void FindReservation()
+        {
+            Console.WriteLine(">>> Find reservationer <<<");
+            Console.WriteLine("\n");
+            Console.WriteLine("Reservationer i dag? tryk 1, alle reservationer tryk 2");
+            Console.CursorVisible = true;
+            string input;
+            string dat;
+            input = Console.ReadLine();
+
+            switch (input)
+            {
+                case "1":
+                    dat = DateTime.Today.ToString("yyyy-MM-dd");
+                    spWorked = control.FindReservation(DateTime.Parse(dat));
+                    Console.WriteLine("\n");
+                    break;
+                case "2":
+                    spWorked = control.FindReservation(DateTime.Parse("1910-01-01"));
+                    Console.WriteLine("\n");
+                    break;
+            }
+            Console.CursorVisible = false;
+            //spWorked = control.FindReservation();
         }
     }
 }
