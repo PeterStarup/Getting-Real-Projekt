@@ -12,11 +12,11 @@ namespace Getting_Real_Projekt
 
         private List<string> menuList = new List<string>()
         {
-            "1. Opret Reservation",
+            "1. Opret reservation",
             "2. Køb af entre",
-            "3. Vis Data",
+            "3. Vis data",
             "4. Vis specifik data",
-            "0. Exit"
+            "0. Afslut"
         };
 
         private Controller control = new Controller();
@@ -34,19 +34,19 @@ namespace Getting_Real_Projekt
 
                 switch (selectedMenu)
                 {
-                    case "1. Opret Reservation":
+                    case "1. Opret reservation":
                         CreateReservation();
                         break;
                     case "2. Køb af entre":
                         CreateEntry();
                         break;
-                    case "3. Vis Data":
+                    case "3. Vis data":
                         ReadData();
                         break;
                     case "4. Vis specifik data":
                         ShowSpecificData();
                         break;
-                    case "0. Exit":
+                    case "0. Afslut":
                         running = false;
                         break;
                 }
@@ -103,12 +103,15 @@ namespace Getting_Real_Projekt
 
         public void CreateReservation()
         {
+            Console.WriteLine(">>> Opret reservation <<<");
+            Console.WriteLine("\n");
             Console.WriteLine("Kundens Navn");
             Console.CursorVisible = true;
             name = Console.ReadLine();
             Console.WriteLine("Kundens tlf nummer");
             tlf = Console.ReadLine();
-            Console.WriteLine("Dato for reservation - Eks. 2018-12-28 18:30");
+            Console.WriteLine("Dato for reservation");
+            Console.WriteLine("yyyy-MM-dd hh:mm");
             time = Console.ReadLine();
             DateTime date = DateTime.Parse(time);
             Console.WriteLine("Antal personer");
@@ -131,7 +134,8 @@ namespace Getting_Real_Projekt
 
         public void CreateEntry()
         {
-            
+            Console.WriteLine(">>> Køb af entre <<<");
+            Console.WriteLine("\n");
             DateTime date = DateTime.Now;
             spWorked = control.InsertEntry(date);
             Console.WriteLine("Dato " + date);
@@ -150,6 +154,8 @@ namespace Getting_Real_Projekt
 
         public void ReadData()
         {
+            Console.WriteLine(">>> Vis data <<<");
+            Console.WriteLine("\n");
             spWorked = control.ReadData();
             Console.WriteLine("\n");
             if (spWorked == true)
@@ -166,8 +172,10 @@ namespace Getting_Real_Projekt
 
         public void ShowSpecificData()
         {
+            Console.WriteLine(">>> Vis specifik data <<<");
+            Console.WriteLine("\n");
             Console.WriteLine("Indsæt dato");
-            Console.WriteLine("eks: 2008-01-01 18:30");
+            Console.WriteLine("yyyy-MM-dd hh:mm");
             Console.CursorVisible = true;
             time = Console.ReadLine();
             DateTime date = DateTime.Parse(time);
