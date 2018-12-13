@@ -233,10 +233,10 @@ namespace Getting_Real_Projekt
                         while (read.Read())
                         {
                             string productName = read["ProductName"].ToString();
-                            string productPrice = read["ProductPrice"].ToString();
+                            string productPrice = read["SumOfPrice"].ToString();
                             string numberOfItems = read["SumOfItems"].ToString();
 
-                            Console.WriteLine($"Product name: {productName}| Product price: {productPrice}| Number of items: {numberOfItems}");
+                            Console.WriteLine($"Product name: {productName}| Total product price: {productPrice}| Number of items: {numberOfItems}");
                         }
                     }
 
