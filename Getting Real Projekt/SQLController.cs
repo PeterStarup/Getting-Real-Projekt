@@ -99,6 +99,12 @@ namespace Getting_Real_Projekt
                             Console.WriteLine("Id: " + id + "| Purchase date: " + date + "| Number of items: " + numberofitems);
                         }
                     }
+                    if (!read.HasRows)
+                    {
+                        spWorked = false;
+                        Console.WriteLine("Intet Data fundet");
+                        return spWorked;
+                    }
                     spWorked = true;
                     return spWorked;
 
@@ -139,6 +145,12 @@ namespace Getting_Real_Projekt
                             Console.WriteLine("Id: " + id + "| Purchase date: " + dat + "| Number of items: " + numberofitems);
                         }
                     }
+                    if (!read.HasRows)
+                    {
+                        spWorked = false;
+                        Console.WriteLine("Intet Data fundet");
+                        return spWorked;
+                    }
                     spWorked = true;
                     return spWorked;
                 }
@@ -147,13 +159,18 @@ namespace Getting_Real_Projekt
                     spWorked = false;
                     Console.WriteLine("Duuude " + e.Message);
                 }
+                catch (System.Data.SqlTypes.SqlTypeException e)
+                {
+                    spWorked = false;
+                    Console.WriteLine("Skriv en dato mellem 1753-01-01 og 9999-12-12\n" + e.Message);
+                }
             }
 
            
             return spWorked;
         }
 
-        public bool FindReservation(DateTime date)
+        public bool FindReservation(DateTime date, string customerName ="")
         {
             using (SqlConnection con = new SqlConnection(connectionString))
             {
@@ -164,6 +181,7 @@ namespace Getting_Real_Projekt
                     SqlCommand cmd = new SqlCommand("spFindReservation", con);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add(new SqlParameter("@Date", date));
+                    cmd.Parameters.Add(new SqlParameter("@CustomerName", customerName));
 
                     SqlDataReader read = cmd.ExecuteReader();
 
@@ -177,6 +195,13 @@ namespace Getting_Real_Projekt
                             string seats = read["Seats"].ToString();
                             Console.WriteLine("Date: " + resdate + "| Customer name: " + customername + "| Customer TLF: " + customertlf + "| Number of seats: " + seats);
                         }
+                    }
+
+                    if (!read.HasRows)
+                    {
+                        spWorked = false;
+                        Console.WriteLine("Intet Data fundet");
+                        return spWorked;
                     }
                     spWorked = true;
                     return spWorked;

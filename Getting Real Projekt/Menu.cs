@@ -186,7 +186,7 @@ namespace Getting_Real_Projekt
             Console.WriteLine(">>> Vis specifik data <<<");
             Console.WriteLine("\n");
             Console.WriteLine("Indsæt dato");
-            Console.WriteLine("yyyy-MM-dd hh:mm");
+            Console.WriteLine("yyyy-MM-dd");
             Console.CursorVisible = true;
             time = Console.ReadLine();
             DateTime date = DateTime.Parse(time);
@@ -212,10 +212,11 @@ namespace Getting_Real_Projekt
         {
             Console.WriteLine(">>> Find reservationer <<<");
             Console.WriteLine("\n");
-            Console.WriteLine("Reservationer i dag? tryk 1, alle reservationer tryk 2");
+            Console.WriteLine("1.Søg Efter i Dag\n2.Søg Efter Navn\n3.Søg Efter Dato og Navn\n4.Søg Efter Dato\n5 Vis Alle Reservationer");
             Console.CursorVisible = true;
             string input;
             string dat;
+            string name;
             input = Console.ReadLine();
             Console.WriteLine("\n");
 
@@ -223,10 +224,36 @@ namespace Getting_Real_Projekt
             {
                 case "1":
                     dat = DateTime.Today.ToString("yyyy-MM-dd");
+                    Console.Clear();
                     spWorked = control.FindReservation(DateTime.Parse(dat));
                     Console.WriteLine("\n");
                     break;
                 case "2":
+                    Console.WriteLine("Skriv et Navn");
+                    name = Console.ReadLine();
+                    Console.Clear();
+                    spWorked = control.FindReservation(DateTime.Parse("1910-01-01"),name);
+                    Console.WriteLine("\n");
+                    break;
+                case "3":
+                    Console.WriteLine("yyyy-MM-dd");
+                    dat = Console.ReadLine();
+                    dat = DateTime.Today.ToString("yyyy-MM-dd");
+                    Console.WriteLine("Skriv et Navn");
+                    name = Console.ReadLine();
+                    Console.Clear();
+                    spWorked = control.FindReservation(DateTime.Parse(dat), name);
+                    Console.WriteLine("\n");
+                    break;
+                case "4":
+                    Console.WriteLine("yyyy-MM-dd");
+                    dat = Console.ReadLine();
+                    Console.Clear();
+                    spWorked = control.FindReservation(DateTime.Parse(dat));
+                    Console.WriteLine("\n");
+                    break;
+                case "5":
+                    Console.Clear();
                     spWorked = control.FindReservation(DateTime.Parse("1910-01-01"));
                     Console.WriteLine("\n");
                     break;
