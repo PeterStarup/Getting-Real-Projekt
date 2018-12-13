@@ -214,5 +214,50 @@ namespace Getting_Real_Projekt
             }
             return spWorked;
         }
+        public bool FindTotalPuchases(DateTime d)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    con.Open();
+
+                    SqlCommand cmd = new SqlCommand("spGRShowPurchasesByDate", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Date@", d);
+
+                    SqlDataReader read = cmd.ExecuteReader();
+
+                    if(read.HasRows)
+                    {
+                        while (read.Read())
+                        {
+                            
+                            string productName = read["ProductName"].ToString();
+                            string productPrice = read["ProductPrice"].ToString();
+                            string numberOfItems = read["NumberOfItems"].ToString();
+
+                            Console.WriteLine($"Product name: {productName}| Product price: {productPrice}| Number of items: {numberOfItems}");
+                        }
+                    }
+
+                    spWorked = true;
+                    return spWorked;
+                }
+                catch (SqlException e)
+                {
+                    spWorked = false;
+                    Console.WriteLine("What? " + e.Message);
+
+                }
+                catch (System.Data.SqlTypes.SqlTypeException e)
+                {
+                    spWorked = false;
+                    Console.WriteLine("Skriv en dato mellem 1753-01-01 og 9999-12-12\n" + e.Message);
+                }
+                return spWorked;
+            }
+
+        }
     }
 }

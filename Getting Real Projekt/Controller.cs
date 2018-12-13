@@ -31,5 +31,10 @@ namespace Getting_Real_Projekt
         {
             return spWorked = Sqlcontroller.FindReservation(date,customerName);
         }
+
+        public bool FindTotalPurchases(DateTime d)
+        {
+            return spWorked = Sqlcontroller.FindTotalPuchases(d);
+        }
     }
 }

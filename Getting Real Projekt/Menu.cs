@@ -17,6 +17,7 @@ namespace Getting_Real_Projekt
             "3. Vis data",
             "4. Vis specifik data",
             "5. Find reservation",
+            "6. Find Total køb ved specific dato",
             "0. Afslut"
         };
 
@@ -49,6 +50,9 @@ namespace Getting_Real_Projekt
                         break;
                     case "5. Find reservation":
                         FindReservation();
+                        break;
+                    case "6. Find Total køb ved specific dato":
+                        FindTotalPurchases();
                         break;
                     case "0. Afslut":
                         running = false;
@@ -124,18 +128,7 @@ namespace Getting_Real_Projekt
             Console.WriteLine("\n");
             Console.WriteLine("Reservation er nu oprettet til den: " + time);
             Console.CursorVisible = false;
-            if (spWorked == true)
-            {
-                Console.WriteLine("Operationen udført uden fejl");
-                Console.WriteLine("\n");
-            }
-            else
-            {
-                Console.WriteLine("FEJL");
-                Console.WriteLine("\n");
-            }
-
-            spWorked = false;
+            SpCheck();
         }
 
         public void CreateEntry()
@@ -146,18 +139,7 @@ namespace Getting_Real_Projekt
             spWorked = control.InsertEntry(date);
             Console.WriteLine("Dato " + date);
             Console.WriteLine("\n");
-            if (spWorked == true)
-            {
-                Console.WriteLine("Operationen udført uden fejl");
-                Console.WriteLine("\n");
-            }
-            else
-            {
-                Console.WriteLine("FEJL");
-                Console.WriteLine("\n");
-            }
-
-            spWorked = false;
+            SpCheck();
         }
 
         public void ReadData()
@@ -166,19 +148,7 @@ namespace Getting_Real_Projekt
             Console.WriteLine("\n");
             spWorked = control.ReadData();
             Console.WriteLine("\n");
-            if (spWorked == true)
-            {
-                Console.WriteLine("Operationen udført uden fejl");
-                Console.WriteLine("\n");
-            }
-            else
-            {
-                Console.WriteLine("FEJL");
-                Console.WriteLine("\n");
-            }
-                
-
-            spWorked = false;
+            SpCheck();
         }
 
         public void ShowSpecificData()
@@ -194,18 +164,7 @@ namespace Getting_Real_Projekt
             spWorked=control.ReadSpecificData(date);
             Console.WriteLine("\n");
             Console.CursorVisible = false;
-            if (spWorked == true)
-            {
-                Console.WriteLine("Operation udført uden fejl");
-                Console.WriteLine("\n");
-            }
-            else
-            {
-                Console.WriteLine("FEJL");
-                Console.WriteLine("\n");
-            }
-
-            spWorked = false;
+            SpCheck();
         }
 
         public void FindReservation()
@@ -259,6 +218,26 @@ namespace Getting_Real_Projekt
                     break;
             }
             Console.CursorVisible = false;
+            SpCheck();
+        }
+        public void FindTotalPurchases()
+        {
+            Console.WriteLine(">>> Find Total Køb Ved Dato <<<");
+            Console.WriteLine("\n");
+            Console.WriteLine("yyyy-MM-dd");
+            string dat;
+
+            dat = Console.ReadLine();
+            dat = DateTime.Today.ToString("yyyy-MM-dd");
+            Console.Clear();
+            spWorked = control.FindTotalPurchases(DateTime.Parse(dat));
+            Console.WriteLine("\n");
+            Console.CursorVisible = false;
+            SpCheck();
+        }
+
+        public void SpCheck()
+        {
             if (spWorked == true)
             {
                 Console.WriteLine("Operation udført uden fejl");
