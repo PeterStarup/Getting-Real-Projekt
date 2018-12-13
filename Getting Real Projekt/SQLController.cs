@@ -224,7 +224,7 @@ namespace Getting_Real_Projekt
 
                     SqlCommand cmd = new SqlCommand("spGRShowPurchasesByDate", con);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@Date@", d);
+                    cmd.Parameters.AddWithValue("@Date", d);
 
                     SqlDataReader read = cmd.ExecuteReader();
 
@@ -232,13 +232,19 @@ namespace Getting_Real_Projekt
                     {
                         while (read.Read())
                         {
-                            
                             string productName = read["ProductName"].ToString();
                             string productPrice = read["ProductPrice"].ToString();
-                            string numberOfItems = read["NumberOfItems"].ToString();
+                            string numberOfItems = read["SumOfItems"].ToString();
 
                             Console.WriteLine($"Product name: {productName}| Product price: {productPrice}| Number of items: {numberOfItems}");
                         }
+                    }
+
+                    if (!read.HasRows)
+                    {
+                        spWorked = false;
+                        Console.WriteLine("Intet Data fundet");
+                        return spWorked;
                     }
 
                     spWorked = true;
@@ -259,5 +265,6 @@ namespace Getting_Real_Projekt
             }
 
         }
+       
     }
 }

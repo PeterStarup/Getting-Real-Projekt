@@ -228,7 +228,6 @@ namespace Getting_Real_Projekt
             string dat;
 
             dat = Console.ReadLine();
-            dat = DateTime.Today.ToString("yyyy-MM-dd");
             Console.Clear();
             spWorked = control.FindTotalPurchases(DateTime.Parse(dat));
             Console.WriteLine("\n");
