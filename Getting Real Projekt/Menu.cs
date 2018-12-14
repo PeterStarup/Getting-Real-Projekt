@@ -9,6 +9,7 @@ namespace Getting_Real_Projekt
     public class Menu
     {
         private static int index = 0;
+        List<Product> p = new List<Product>();
 
         private List<string> menuList = new List<string>()
         {
@@ -143,7 +144,9 @@ namespace Getting_Real_Projekt
             Console.WriteLine("Hvor mange? ");
             Console.CursorVisible = true;
             int amount = int.Parse(Console.ReadLine());
-            spWorked = control.InsertEntry(date, amount);
+            double total = 0.0;
+            total = amount * p[0].Price;
+            spWorked = control.InsertEntry(date, amount,total);
             Console.WriteLine("\n");
             Console.WriteLine("Der er købt " + amount + " entre på dato'en " + date);
             Console.WriteLine("\n");
@@ -261,9 +264,10 @@ namespace Getting_Real_Projekt
 
         public void GetProducts()
         {
-            control.GetProducts();
-            Product pro = new Product();
-            foreach (Product item in pro.products)
+            
+            p = control.GetProducts();
+            
+            foreach (Product item in p)
             {
                 Console.WriteLine("Name" + item.Name + "Price" + item.Price);
             }

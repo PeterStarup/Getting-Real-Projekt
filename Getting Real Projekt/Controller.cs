@@ -14,10 +14,10 @@ namespace Getting_Real_Projekt
         {
             return spWorked = Sqlcontroller.InsertReservation(name, tlfNumber, timeOfReservation, numberOfPersons);
         }
-        public bool InsertEntry(DateTime date, int numberofitems)
+        public bool InsertEntry(DateTime date, int numberofitems,double total)
         {
             
-            return spWorked= Sqlcontroller.InsertEntry(date, numberofitems);
+            return spWorked= Sqlcontroller.InsertEntry(date, numberofitems, total);
         }
         public bool ReadData()
         {
@@ -36,9 +36,9 @@ namespace Getting_Real_Projekt
         {
             return spWorked = Sqlcontroller.FindTotalPuchases(d);
         }
-        public bool GetProducts()
+        public List<Product> GetProducts()
         {
-            return spWorked = Sqlcontroller.GetProducts();
+            return Sqlcontroller.GetProducts();
         }
     }
 }

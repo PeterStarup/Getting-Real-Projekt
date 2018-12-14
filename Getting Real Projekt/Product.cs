@@ -9,13 +9,7 @@ namespace Getting_Real_Projekt
     public class Product
     {
         private string name;
-        private string price;
-        public List<Product> products = new List<Product>();
-
-        public void AddProduct(Product p)
-        {
-            products.Add(p);
-        }
+        private double price;
 
         public string Name
         {
@@ -28,7 +22,7 @@ namespace Getting_Real_Projekt
                 name = value;
             }
         }
-        public string Price
+        public double Price
         {
             get
             {

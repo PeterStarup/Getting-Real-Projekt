@@ -45,7 +45,7 @@ namespace Getting_Real_Projekt
             
             return spWorked;
         }
-        public bool InsertEntry(DateTime date, int numberofitems)
+        public bool InsertEntry(DateTime date, int numberofitems,double total)
         {
             using (SqlConnection con = new SqlConnection(connectionString))
             {
@@ -58,6 +58,7 @@ namespace Getting_Real_Projekt
 
                     cmd.Parameters.Add(new SqlParameter("@PurchaseDate", date));
                     cmd.Parameters.Add(new SqlParameter("@NumberOfItems", numberofitems));
+                    cmd.Parameters.Add(new SqlParameter("@Total", total));
 
                     cmd.ExecuteNonQuery();
                     spWorked = true;
@@ -267,15 +268,16 @@ namespace Getting_Real_Projekt
 
         }
 
-        public bool GetProducts()
+        public List<Product> GetProducts()
         {
+            List<Product> p = new List<Product>();
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 try
                 {
                     con.Open();
 
-                    Product pro;
+                    
                     SqlCommand cmd = new SqlCommand("spGRShowAllProducts", con);
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -285,21 +287,21 @@ namespace Getting_Real_Projekt
                     {
                         while (read.Read())
                         {
-                            pro = new Product();
+                            
                             string productName = read["ProductName"].ToString();
-                            string productPrice = read["ProductPrice"].ToString();
-                            //double douprice = double.Parse(productPrice);
-                            pro.AddProduct(new Product { Name = productName, Price = productPrice });
+                            string productPrice = read["ProductPrice"].ToString() + ".0";
+                            double douprice = double.Parse(productPrice);
+                            p.Add(new Product { Name = productName, Price = douprice });
                         }
                     }
                     spWorked = true;
-                    return spWorked;
+                    return p;
                 }
                 catch (SqlException e)
                 {
                     Console.WriteLine("Hej " + e.Message);
                 }
-                return spWorked;
+                return p;
             }
         }
        

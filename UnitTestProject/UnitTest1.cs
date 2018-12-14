@@ -23,7 +23,7 @@ namespace UnitTestProject
         [TestMethod]
         public void InsertEntry()
         {
-            Assert.AreEqual(true, sqlController.InsertEntry(date2));
+            Assert.AreEqual(true, sqlController.InsertEntry(date2, 1,1.0));
         }
         [TestMethod]
         public void InsertReservation()
