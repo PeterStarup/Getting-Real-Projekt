@@ -263,9 +263,9 @@ namespace Getting_Real_Projekt
         {
             control.GetProducts();
             Product pro = new Product();
-            for (int i = 0; i < pro.products.Count; i++)
+            foreach (Product item in pro.products)
             {
-                Console.WriteLine("Name" + pro.products[i].Name + "Price" + pro.products[i].Price);
+                Console.WriteLine("Name" + item.Name + "Price" + item.Price);
             }
         }
     }
