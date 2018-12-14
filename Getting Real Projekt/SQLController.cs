@@ -45,7 +45,7 @@ namespace Getting_Real_Projekt
             
             return spWorked;
         }
-        public bool InsertEntry(DateTime date)
+        public bool InsertEntry(DateTime date, int numberofitems)
         {
             using (SqlConnection con = new SqlConnection(connectionString))
             {
@@ -53,10 +53,11 @@ namespace Getting_Real_Projekt
                 {
                     con.Open();
 
-                    SqlCommand cmd = new SqlCommand("spGRInsertEntry", con);
+                    SqlCommand cmd = new SqlCommand("spGRInsertPurchaseWithTransaction", con);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.Add(new SqlParameter("@PurchaseDate", date));
+                    cmd.Parameters.Add(new SqlParameter("@NumberOfItems", numberofitems));
 
                     cmd.ExecuteNonQuery();
                     spWorked = true;

@@ -14,10 +14,10 @@ namespace Getting_Real_Projekt
         {
             return spWorked = Sqlcontroller.InsertReservation(name, tlfNumber, timeOfReservation, numberOfPersons);
         }
-        public bool InsertEntry(DateTime date)
+        public bool InsertEntry(DateTime date, int numberofitems)
         {
             
-            return spWorked= Sqlcontroller.InsertEntry(date);
+            return spWorked= Sqlcontroller.InsertEntry(date, numberofitems);
         }
         public bool ReadData()
         {

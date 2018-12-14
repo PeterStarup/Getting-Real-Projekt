@@ -136,9 +136,14 @@ namespace Getting_Real_Projekt
             Console.WriteLine(">>> Køb af entre <<<");
             Console.WriteLine("\n");
             DateTime date = DateTime.Now;
-            spWorked = control.InsertEntry(date);
-            Console.WriteLine("Dato " + date);
+            Console.WriteLine("Hvor mange? ");
+            Console.CursorVisible = true;
+            int amount = int.Parse(Console.ReadLine());
+            spWorked = control.InsertEntry(date, amount);
             Console.WriteLine("\n");
+            Console.WriteLine("Der er købt " + amount + " entre på dato'en " + date);
+            Console.WriteLine("\n");
+            Console.CursorVisible = false;
             SpCheck();
         }
 
