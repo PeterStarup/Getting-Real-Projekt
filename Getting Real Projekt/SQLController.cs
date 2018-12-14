@@ -288,8 +288,8 @@ namespace Getting_Real_Projekt
                             pro = new Product();
                             string productName = read["ProductName"].ToString();
                             string productPrice = read["ProductPrice"].ToString();
-                            double douprice = double.Parse(productPrice);
-                            pro.AddProduct(new Product { Name = productName, Price = douprice });
+                            //double douprice = double.Parse(productPrice);
+                            pro.AddProduct(new Product { Name = productName, Price = productPrice });
                         }
                     }
                     spWorked = true;

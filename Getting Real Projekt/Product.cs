@@ -9,7 +9,7 @@ namespace Getting_Real_Projekt
     public class Product
     {
         private string name;
-        private double price;
+        private string price;
         public List<Product> products = new List<Product>();
 
         public void AddProduct(Product p)
@@ -28,7 +28,7 @@ namespace Getting_Real_Projekt
                 name = value;
             }
         }
-        public double Price
+        public string Price
         {
             get
             {
