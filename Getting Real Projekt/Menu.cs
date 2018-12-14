@@ -18,6 +18,7 @@ namespace Getting_Real_Projekt
             "4. Vis specifik data",
             "5. Find reservation",
             "6. Find Total køb ved specific dato",
+            "7. Nye priser",
             "0. Afslut"
         };
 
@@ -53,6 +54,9 @@ namespace Getting_Real_Projekt
                         break;
                     case "6. Find Total køb ved specific dato":
                         FindTotalPurchases();
+                        break;
+                    case "7. Nye priser":
+                        GetProducts();
                         break;
                     case "0. Afslut":
                         running = false;
@@ -253,6 +257,16 @@ namespace Getting_Real_Projekt
                 Console.WriteLine("\n");
             }
             spWorked = false;
+        }
+
+        public void GetProducts()
+        {
+            control.GetProducts();
+            Product pro = new Product();
+            for (int i = 0; i < pro.products.Count; i++)
+            {
+                Console.WriteLine("Name" + pro.products[i].Name + "Price" + pro.products[i].Price);
+            }
         }
     }
 }

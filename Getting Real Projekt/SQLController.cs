@@ -266,6 +266,42 @@ namespace Getting_Real_Projekt
             }
 
         }
+
+        public bool GetProducts()
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    con.Open();
+
+                    Product pro;
+                    SqlCommand cmd = new SqlCommand("spGRShowAllProducts", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    SqlDataReader read = cmd.ExecuteReader();
+
+                    if (read.HasRows)
+                    {
+                        while (read.Read())
+                        {
+                            pro = new Product();
+                            string productName = read["ProductName"].ToString();
+                            string productPrice = read["ProductPrice"].ToString();
+                            double douprice = double.Parse(productPrice);
+                            pro.AddProduct(new Product { Name = productName, Price = douprice });
+                        }
+                    }
+                    spWorked = true;
+                    return spWorked;
+                }
+                catch (SqlException e)
+                {
+                    Console.WriteLine("Hej " + e.Message);
+                }
+                return spWorked;
+            }
+        }
        
     }
 }

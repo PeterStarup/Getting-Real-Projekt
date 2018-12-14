@@ -36,5 +36,9 @@ namespace Getting_Real_Projekt
         {
             return spWorked = Sqlcontroller.FindTotalPuchases(d);
         }
+        public bool GetProducts()
+        {
+            return spWorked = Sqlcontroller.GetProducts();
+        }
     }
 }
