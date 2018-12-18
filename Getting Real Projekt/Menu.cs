@@ -268,12 +268,11 @@ namespace Getting_Real_Projekt
 
         public void GetProducts()
         {
-            
             p = control.GetProducts();
             int i = 0;
             foreach (Product item in p)
             {
-                Console.WriteLine( i + ".Name " + item.Name + "Price " + item.Price);
+                Console.WriteLine(i + ".Name " + item.Name + "Price " + item.Price);
             }
         }
 
