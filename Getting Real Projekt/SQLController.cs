@@ -254,7 +254,7 @@ namespace Getting_Real_Projekt
                 {
                     con.Open();
 
-                    SqlCommand cmd = new SqlCommand("spGRShowPurchasesByDate", con);
+                    SqlCommand cmd = new SqlCommand("spGRTEST", con);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Date", d);
 
@@ -262,13 +262,14 @@ namespace Getting_Real_Projekt
 
                     if(read.HasRows)
                     {
+                        Console.WriteLine("Product Name:        Antal:        Total Pris:");
                         while (read.Read())
                         {
                             string productName = read["ProductName"].ToString();
-                            string productPrice = read["SumOfPrice"].ToString();
-                            string numberOfItems = read["SumOfItems"].ToString();
+                            string productPrice = read["TotalPris"].ToString();
+                            string numberOfItems = read["NumberOfItems"].ToString();
 
-                            Console.WriteLine($"Product name: {productName}| Total product price: {productPrice}| Number of items: {numberOfItems}");
+                            Console.WriteLine($"{productName}               {numberOfItems}                  {productPrice}");
                         }
                     }
 
