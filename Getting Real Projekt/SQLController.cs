@@ -259,18 +259,19 @@ namespace Getting_Real_Projekt
                     cmd.Parameters.AddWithValue("@Date", d);
 
                     SqlDataReader read = cmd.ExecuteReader();
-
+                    double totalPris = 0;
                     if(read.HasRows)
                     {
-                        Console.WriteLine("Product Name:        Antal:        Total Pris:");
+                        Console.WriteLine(String.Format("|{0,20}|{1,20}|{2,20}|", "Produkt navn:", "Antal:", "Pris:"));
                         while (read.Read())
                         {
                             string productName = read["ProductName"].ToString();
                             string productPrice = read["TotalPris"].ToString();
                             string numberOfItems = read["NumberOfItems"].ToString();
-
-                            Console.WriteLine($"{productName}               {numberOfItems}                  {productPrice}");
+                            Console.WriteLine(String.Format("|{0,20}|{1,20}|{2,20}|", productName, numberOfItems, productPrice));
+                            totalPris += double.Parse(productPrice);
                         }
+                        Console.WriteLine(String.Format("|{0,41}|{1,20}|", "Total Pris:", totalPris));
                     }
 
                     if (!read.HasRows)
