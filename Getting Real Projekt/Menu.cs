@@ -41,6 +41,7 @@ namespace Getting_Real_Projekt
         private Controller control = new Controller();
 
         private bool spWorked;
+        private int menuChoose = 0;
 
         public void Show()
         {
@@ -49,7 +50,7 @@ namespace Getting_Real_Projekt
             GetProducts();
             while (running)
             {
-                string selectedMenu = RunMenu(menuList);
+                string selectedMenu = RunMenu(menuList, buyProductMenu, newPriceMenu);
 
                 switch (selectedMenu)
                 {
@@ -66,21 +67,21 @@ namespace Getting_Real_Projekt
                          ShowSpecificData();
                          break;*/
                     case "1. Køb af produkt":
-                        string buyMenu = RunMenu(buyProductMenu);
+                        menuChoose = 1;
 
-                        switch (buyMenu)
+                        switch (selectedMenu)
                         {
                             case "1. Entre":
-
+                                CreateEntry();
                                 break;
                             case "2. Restaurent menu":
-
+                                BuyProduct();
                                 break;
                             case "3. Opret reservation":
-
+                                CreateReservation();
                                 break;
                             case "0. Afslut":
-                                //Intet
+                                menuChoose = 0;
                                 break;
                         }
 
@@ -89,9 +90,9 @@ namespace Getting_Real_Projekt
                         FindReservation();
                         break;
                     case "3. Nye priser":
-                        string newPrice = RunMenu(newPriceMenu);
+                        menuChoose = 2;
 
-                        switch (newPrice)
+                        switch (selectedMenu)
                         {
                             case "1. Entre":
 
@@ -100,7 +101,7 @@ namespace Getting_Real_Projekt
 
                                 break;
                             case "0. Afslut":
-                                //Intet
+                                menuChoose = 0;
                                 break;
                         }
 
@@ -115,32 +116,92 @@ namespace Getting_Real_Projekt
             }
         }
 
-        private string RunMenu(List<string> menu)
+        private string RunMenu(List<string> menu, List<string> buyProductMenu, List<string> newPriceMenu)
         {
-            for (int i = 0; i < menu.Count; i++)
+            if (menuChoose == 0)
             {
-                if (i.Equals(index))
+                for (int i = 0; i < menu.Count; i++)
                 {
-                    Console.BackgroundColor = ConsoleColor.Gray;
-                    Console.ForegroundColor = ConsoleColor.Black;
-                    Console.WriteLine(menu[i]);
+                    if (i.Equals(index))
+                    {
+                        Console.BackgroundColor = ConsoleColor.Gray;
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.WriteLine(menu[i]);
+                    }
+                    else
+                    {
+                        Console.WriteLine(menu[i]);
+                    }
+                    Console.ResetColor();
                 }
-                else
-                {
-                    Console.WriteLine(menu[i]);
-                }
-                Console.ResetColor();
+                Console.WriteLine("\n");
+                Console.WriteLine("---------------");
             }
-            Console.WriteLine("\n");
-            Console.WriteLine("---------------");
+
+            if (menuChoose == 1)
+            {
+                for (int i = 0; i < buyProductMenu.Count; i++)
+                {
+                    if (i.Equals(index))
+                    {
+                        Console.BackgroundColor = ConsoleColor.Gray;
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.WriteLine(buyProductMenu[i]);
+                    }
+                    else
+                    {
+                        Console.WriteLine(buyProductMenu[i]);
+                    }
+                    Console.ResetColor();
+                }
+                Console.WriteLine("\n");
+                Console.WriteLine("---------------");
+            }
+
+            if (menuChoose == 2)
+            {
+                for (int i = 0; i < newPriceMenu.Count; i++)
+                {
+                    if (i.Equals(index))
+                    {
+                        Console.BackgroundColor = ConsoleColor.Gray;
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.WriteLine(newPriceMenu[i]);
+                    }
+                    else
+                    {
+                        Console.WriteLine(newPriceMenu[i]);
+                    }
+                    Console.ResetColor();
+                }
+                Console.WriteLine("\n");
+                Console.WriteLine("---------------");
+            }
 
             ConsoleKeyInfo ckey = Console.ReadKey();
 
             if (ckey.Key.Equals(ConsoleKey.DownArrow))
             {
-                if (index < menu.Count -1)
+                if (menuChoose == 0)
                 {
-                    index++;
+                    if (index < menu.Count - 1)
+                    {
+                        index++;
+                    }
+                }
+                else if (menuChoose == 1)
+                {
+                    if (index < buyProductMenu.Count - 1)
+                    {
+                        index++;
+                    }
+                }
+                else
+                {
+                    if (index < newPriceMenu.Count - 1)
+                    {
+                        index++;
+                    }
                 }
             }
             else if (ckey.Key.Equals(ConsoleKey.UpArrow))
@@ -152,7 +213,18 @@ namespace Getting_Real_Projekt
             }
             else if (ckey.Key.Equals(ConsoleKey.Enter))
             {
-                return menu[index];
+                if (menuChoose == 0)
+                {
+                    return menu[index];
+                }
+                else if (menuChoose == 1)
+                {
+                    return buyProductMenu[index];
+                }
+                else
+                {
+                    return newPriceMenu[index];
+                }
             }
             Console.Clear();
             return "";
