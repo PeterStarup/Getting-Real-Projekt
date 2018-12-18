@@ -293,7 +293,7 @@ namespace Getting_Real_Projekt
             DateTime date = DateTime.Now;
 
             Console.WriteLine("Hvilke Product? ");
-            int productId = int.Parse(Console.ReadLine());
+            int productId = int.Parse(Console.ReadLine()) -1;
             Console.WriteLine("Hvor mange? ");
             
             Console.CursorVisible = true;
