@@ -20,6 +20,7 @@ namespace Getting_Real_Projekt
             "5. Find reservation",
             "6. Find Total køb ved specific dato",
             "7. Nye priser",
+            "8. Køb af product",
             "0. Afslut"
         };
 
@@ -58,6 +59,9 @@ namespace Getting_Real_Projekt
                         break;
                     case "7. Nye priser":
                         GetProducts();
+                        break;
+                    case "8. Køb af product":
+                        BuyProduct();
                         break;
                     case "0. Afslut":
                         running = false;
@@ -266,11 +270,37 @@ namespace Getting_Real_Projekt
         {
             
             p = control.GetProducts();
-            
+            int i = 0;
             foreach (Product item in p)
             {
-                Console.WriteLine("Name" + item.Name + "Price" + item.Price);
+                Console.WriteLine( i + ".Name " + item.Name + "Price " + item.Price);
             }
+        }
+
+        public void BuyProduct()
+        {
+            if (p.Count == 0)
+            {
+                GetProducts();
+            }
+            Console.WriteLine(">>> Køb af product <<<");
+            Console.WriteLine("\n");
+            DateTime date = DateTime.Now;
+
+            Console.WriteLine("Hvilke Product? ");
+            int productId = int.Parse(Console.ReadLine());
+            Console.WriteLine("Hvor mange? ");
+            
+            Console.CursorVisible = true;
+            int amount = int.Parse(Console.ReadLine());
+            double total = 0.0;
+            total = amount * p[productId].Price;
+            spWorked = control.BuyProduct(date, amount, total,productId);
+            Console.WriteLine("\n");
+            Console.WriteLine("Der er købt " + amount +  " " + p[productId].Name + " på dato'en " + date);
+            Console.WriteLine("\n");
+            Console.CursorVisible = false;
+            SpCheck();
         }
     }
 }
