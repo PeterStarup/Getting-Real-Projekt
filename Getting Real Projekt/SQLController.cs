@@ -74,6 +74,36 @@ namespace Getting_Real_Projekt
             
             return spWorked;
         }
+        public bool BuyProduct(DateTime date, int numberofitems, double total, int productId)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    con.Open();
+
+                    SqlCommand cmd = new SqlCommand("spGRInsertPurchaseWithTransaction", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(new SqlParameter("@PurchaseDate", date));
+                    cmd.Parameters.Add(new SqlParameter("@NumberOfItems", numberofitems));
+                    cmd.Parameters.Add(new SqlParameter("@Total", total));
+                    cmd.Parameters.Add(new SqlParameter("@ProductId", productId));
+
+                    cmd.ExecuteNonQuery();
+                    spWorked = true;
+                    return spWorked;
+                }
+                catch (SqlException e)
+                {
+                    spWorked = false;
+                    Console.WriteLine("Woopsi " + e.Message);
+                }
+            }
+
+
+            return spWorked;
+        }
         public bool ReadData()
         {
             using (SqlConnection con = new SqlConnection(connectionString))

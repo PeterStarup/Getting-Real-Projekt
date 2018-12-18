@@ -40,5 +40,9 @@ namespace Getting_Real_Projekt
         {
             return Sqlcontroller.GetProducts();
         }
+        public bool BuyProduct(DateTime date, int numberofitems, double total, int productId)
+        {
+            return Sqlcontroller.BuyProduct(date, numberofitems, total, productId);
+        }
     }
 }
