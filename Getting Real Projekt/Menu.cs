@@ -13,14 +13,14 @@ namespace Getting_Real_Projekt
 
         private List<string> menuList = new List<string>()
         {
-            "1. Opret reservation",
-            "2. Køb af entre",
-            "3. Vis data",
-            "4. Vis specifik data",
-            "5. Find reservation",
-            "6. Find Total køb ved specific dato",
-            "7. Nye priser",
-            "8. Køb af product",
+           /* "1. Opret reservation",
+            "2. Køb af entre",*/
+            /*"3. Vis data",
+            "4. Vis specifik data",*/
+            "1. Køb af produkt",
+            "2. Find reservation",
+            "3. Total solgt på en dag",
+            "4. Nye priser",
             "0. Afslut"
         };
 
@@ -39,32 +39,30 @@ namespace Getting_Real_Projekt
 
                 switch (selectedMenu)
                 {
-                    case "1. Opret reservation":
-                        CreateReservation();
-                        break;
-                    case "2. Køb af entre":
-                        CreateEntry();
-                        break;
-                    case "3. Vis data":
-                        ReadData();
-                        break;
-                    case "4. Vis specifik data":
-                        ShowSpecificData();
-                        break;
-                    case "5. Find reservation":
-                        FindReservation();
-                        break;
-                    case "6. Find Total køb ved specific dato":
-                        FindTotalPurchases();
-                        break;
-                    case "7. Nye priser":
-                        
-                        ChangePrice();
-                        break;
-                    case "8. Køb af product":
+                    /* case "1. Opret reservation":
+                         CreateReservation();
+                         break;
+                     case "2. Køb af entre":
+                         CreateEntry();
+                         break;
+                     case "3. Vis data":
+                         ReadData();
+                         break;
+                     case "4. Vis specifik data":
+                         ShowSpecificData();
+                         break;*/
+                    case "1. Køb af produkt":
                         BuyProduct();
                         break;
-
+                    case "2. Find reservation":
+                        FindReservation();
+                        break;
+                    case "3. Total solgt på en dag":
+                        FindTotalPurchases();
+                        break;
+                    case "4. Nye priser":
+                        ChangePrice();
+                        break;
                     case "0. Afslut":
                         running = false;
                         break;
