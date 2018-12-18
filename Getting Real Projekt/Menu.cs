@@ -29,13 +29,13 @@ namespace Getting_Real_Projekt
             "1. Entre",
             "2. Restaurent menu",
             "3. Opret reservation",
-            "4. Afslut"
+            "0. Afslut"
         };
         private List<string> newPriceMenu = new List<string>()
         {
             "1. Entre",
             "2. Restaurent menu",
-            "3. Afslut"
+            "0. Afslut"
         };
 
         private Controller control = new Controller();
@@ -79,7 +79,7 @@ namespace Getting_Real_Projekt
                             case "3. Opret reservation":
 
                                 break;
-                            case "4. Afslut":
+                            case "0. Afslut":
                                 //Intet
                                 break;
                         }
@@ -99,7 +99,7 @@ namespace Getting_Real_Projekt
                             case "2. Restaurent menu":
 
                                 break;
-                            case "3. Afslut":
+                            case "0. Afslut":
                                 //Intet
                                 break;
                         }
