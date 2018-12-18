@@ -40,5 +40,22 @@ namespace Getting_Real_Projekt
         {
             return Sqlcontroller.GetProducts();
         }
+
+        public void ChangePrices(List<Product> pro)
+        {
+            Console.WriteLine("Products and their prices");
+            foreach (Product item in pro)
+            {
+                Console.WriteLine("Product: " + item.Name + " Current price: " + item.Price);
+            }
+            Console.WriteLine("What would you like to change? Type 1 to choose " + pro[0].Name + " and so on");
+            int input = int.Parse(Console.ReadLine());
+            switch (input)
+            {
+                case 1:
+
+                    break;
+            }
+        }
     }
 }
