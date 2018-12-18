@@ -32,7 +32,7 @@ namespace Getting_Real_Projekt
         {
             bool running = true;
             Console.CursorVisible = false;
-
+            GetProducts();
             while (running)
             {
                 string selectedMenu = RunMenu(menuList);
@@ -58,11 +58,13 @@ namespace Getting_Real_Projekt
                         FindTotalPurchases();
                         break;
                     case "7. Nye priser":
-                        GetProducts();
+                        
+                        ChangePrice();
                         break;
                     case "8. Køb af product":
                         BuyProduct();
                         break;
+
                     case "0. Afslut":
                         running = false;
                         break;
@@ -251,6 +253,12 @@ namespace Getting_Real_Projekt
             SpCheck();
         }
 
+        public void ChangePrice()
+        {
+           
+            control.ChangePrices(p);
+        }
+
         public void SpCheck()
         {
             if (spWorked == true)
@@ -268,12 +276,10 @@ namespace Getting_Real_Projekt
 
         public void GetProducts()
         {
+
             p = control.GetProducts();
-            int i = 0;
-            foreach (Product item in p)
-            {
-                Console.WriteLine(i + ".Name " + item.Name + "Price " + item.Price);
-            }
+           
+            
         }
 
         public void BuyProduct()
