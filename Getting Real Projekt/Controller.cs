@@ -41,6 +41,24 @@ namespace Getting_Real_Projekt
             return Sqlcontroller.GetProducts();
         }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         public void ChangePrices(List<Product> pro)
         {
             Console.WriteLine("Products and their prices");
