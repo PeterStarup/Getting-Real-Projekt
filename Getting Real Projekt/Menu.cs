@@ -19,9 +19,23 @@ namespace Getting_Real_Projekt
             "4. Vis specifik data",*/
             "1. Køb af produkt",
             "2. Find reservation",
-            "3. Total solgt på en dag",
-            "4. Nye priser",
+            "3. Nye priser",
+            "4. Total solgt på en dag",
             "0. Afslut"
+        };
+
+        private List<string> buyProductMenu = new List<string>()
+        {
+            "1. Entre",
+            "2. Restaurent menu",
+            "3. Opret reservation",
+            "4. Afslut"
+        };
+        private List<string> newPriceMenu = new List<string>()
+        {
+            "1. Entre",
+            "2. Restaurent menu",
+            "3. Afslut"
         };
 
         private Controller control = new Controller();
@@ -52,16 +66,47 @@ namespace Getting_Real_Projekt
                          ShowSpecificData();
                          break;*/
                     case "1. Køb af produkt":
-                        BuyProduct();
+                        string buyMenu = RunMenu(buyProductMenu);
+
+                        switch (buyMenu)
+                        {
+                            case "1. Entre":
+
+                                break;
+                            case "2. Restaurent menu":
+
+                                break;
+                            case "3. Opret reservation":
+
+                                break;
+                            case "4. Afslut":
+                                //Intet
+                                break;
+                        }
+
                         break;
                     case "2. Find reservation":
                         FindReservation();
                         break;
-                    case "3. Total solgt på en dag":
-                        FindTotalPurchases();
+                    case "3. Nye priser":
+                        string newPrice = RunMenu(newPriceMenu);
+
+                        switch (newPrice)
+                        {
+                            case "1. Entre":
+
+                                break;
+                            case "2. Restaurent menu":
+
+                                break;
+                            case "3. Afslut":
+                                //Intet
+                                break;
+                        }
+
                         break;
-                    case "4. Nye priser":
-                        ChangePrice();
+                    case "4. Total solgt på en dag":
+                        FindTotalPurchases();
                         break;
                     case "0. Afslut":
                         running = false;
