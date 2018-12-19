@@ -13,10 +13,6 @@ namespace Getting_Real_Projekt
 
         private List<string> menuList = new List<string>()
         {
-           /* "1. Opret reservation",
-            "2. Køb af entre",*/
-            /*"3. Vis data",
-            "4. Vis specifik data",*/
             "1. Køb af produkt",
             "2. Find reservation",
             "3. Nye priser",
@@ -50,61 +46,18 @@ namespace Getting_Real_Projekt
             GetProducts();
             while (running)
             {
-                string selectedMenu = RunMenu(menuList, buyProductMenu, newPriceMenu);
+                string selectedMenu = RunMenu(menuList);
 
                 switch (selectedMenu)
                 {
-                    /* case "1. Opret reservation":
-                         CreateReservation();
-                         break;
-                     case "2. Køb af entre":
-                         CreateEntry();
-                         break;
-                     case "3. Vis data":
-                         ReadData();
-                         break;
-                     case "4. Vis specifik data":
-                         ShowSpecificData();
-                         break;*/
                     case "1. Køb af produkt":
-                        menuChoose = 1;
-
-                        switch (selectedMenu)
-                        {
-                            case "1. Entre":
-                                CreateEntry();
-                                break;
-                            case "2. Restaurent menu":
-                                BuyProduct();
-                                break;
-                            case "3. Opret reservation":
-                                CreateReservation();
-                                break;
-                            case "0. Afslut":
-                                menuChoose = 0;
-                                break;
-                        }
-
+                        secondMenu();
                         break;
                     case "2. Find reservation":
                         FindReservation();
                         break;
                     case "3. Nye priser":
-                        menuChoose = 2;
-
-                        switch (selectedMenu)
-                        {
-                            case "1. Entre":
-
-                                break;
-                            case "2. Restaurent menu":
-
-                                break;
-                            case "0. Afslut":
-                                menuChoose = 0;
-                                break;
-                        }
-
+                        thirdMenu();
                         break;
                     case "4. Total solgt på en dag":
                         FindTotalPurchases();
@@ -115,8 +68,54 @@ namespace Getting_Real_Projekt
                 }
             }
         }
+        public void thirdMenu()
+        {
+            bool running = true;
+            Console.CursorVisible = false;
+            while (running)
+            {
+                string SelectedMenu = RunMenu(newPriceMenu);
+                switch (SelectedMenu)
+                {
+                    case "1. Entre":
 
-        private string RunMenu(List<string> menu, List<string> buyProductMenu, List<string> newPriceMenu)
+                        break;
+                    case "2. Restaurent menu":
+
+                        break;
+                    case "0. Afslut":
+                        Show();
+                        break;
+                }
+            }
+        }
+        
+        public void secondMenu()
+        {
+            bool running = true;
+            Console.CursorVisible = false;
+            while (running)
+            {
+                string SelectedMenu = RunMenu(buyProductMenu);
+                switch (SelectedMenu)
+                {
+                    case "1. Entre":
+                        CreateEntry();
+                        break;
+                    case "2. Restaurent menu":
+                        BuyProduct();
+                        break;
+                    case "3. Opret reservation":
+                        CreateReservation();
+                        break;
+                    case "0. Afslut":
+                        Show();
+                        break;
+                }
+            }
+        }
+
+        private string RunMenu(List<string> menu)
         {
             if (menuChoose == 0)
             {
