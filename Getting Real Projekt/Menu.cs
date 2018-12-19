@@ -78,7 +78,7 @@ namespace Getting_Real_Projekt
                 switch (SelectedMenu)
                 {
                     case "1. Entre":
-                        Console.WriteLine("Hvad skal den nye pris for entre være? Den nye pris vil automatisk få trækket 25% af");
+                        Console.WriteLine("Hvad skal den nye pris for entre være?");
                         Console.CursorVisible = true;
                         input = double.Parse(Console.ReadLine());
                         input = input * 0.75;
@@ -336,12 +336,12 @@ namespace Getting_Real_Projekt
             {
                 GetProducts();
             }
-            Console.WriteLine(">>> Køb af product <<<");
+            Console.WriteLine(">>> Køb af Menu <<<");
             Console.WriteLine("\n");
             DateTime date = DateTime.Now;
 
-            Console.WriteLine("Hvilke Product? ");
-            int productId = int.Parse(Console.ReadLine()) -1;
+
+            int productId = 1;
             Console.WriteLine("Hvor mange? ");
             
             Console.CursorVisible = true;
