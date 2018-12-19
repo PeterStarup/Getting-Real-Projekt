@@ -89,6 +89,7 @@ namespace Getting_Real_Projekt
                         Console.WriteLine("Hvad skal den pris på menu'en være?");
                         Console.CursorVisible = true;
                         input = double.Parse(Console.ReadLine());
+                        ChangePrice(p[1], input);
                         Console.CursorVisible = false;
                         break;
                     case "0. Afslut":
