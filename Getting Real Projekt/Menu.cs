@@ -209,7 +209,6 @@ namespace Getting_Real_Projekt
             double total = 0.0;
             total = amount * p[0].Price;
             spWorked = control.InsertEntry(date, amount,total);
-            Console.WriteLine(total.ToString());
             Console.WriteLine("\n");
             Console.WriteLine("Der er købt " + amount + " entre på dato'en " + date);
             Console.WriteLine("\n");
