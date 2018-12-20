@@ -104,6 +104,7 @@ namespace Getting_Real_Projekt
 
             return spWorked;
         }
+        
         public bool ReadData()
         {
             using (SqlConnection con = new SqlConnection(connectionString))
