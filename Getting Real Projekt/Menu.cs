@@ -341,7 +341,7 @@ namespace Getting_Real_Projekt
             DateTime date = DateTime.Now;
 
 
-            int productId = 1;
+            int productId = 5;
             Console.WriteLine("Hvor mange? ");
             
             Console.CursorVisible = true;
