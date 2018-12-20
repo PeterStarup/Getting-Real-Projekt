@@ -45,31 +45,9 @@ namespace Getting_Real_Projekt
             return Sqlcontroller.BuyProduct(date, numberofitems, total, productId);
         }
 
-        public void ChangePrices(List<Product> pro)
+        public void ChangePrices(Product pro, double newPrice)
         {
-            Console.WriteLine("Products and their prices");
-            foreach (Product item in pro)
-            {
-                Console.WriteLine("Product: " + item.Name + " Current price: " + item.Price);
-            }
-            Console.WriteLine("What would you like to change? Type 1 to choose " + pro[0].Name + " and so on");
-            int input = int.Parse(Console.ReadLine());
-            switch (input)
-            {
-                case 1:
-                    Console.WriteLine("Insert new price");
-                    pro[0].Price = double.Parse(Console.ReadLine());
-                    pro[0].Price = pro[0].Price * 0.75;
-                    break;
-                case 2:
-                    Console.WriteLine("Insert new price");
-                    pro[1].Price = double.Parse(Console.ReadLine());
-                    break;
-                case 3:
-                    Console.WriteLine("Insert new price");
-                    pro[2].Price = double.Parse(Console.ReadLine());
-                    break;
-            }
+            pro.Price = newPrice;
         }
     }
 }

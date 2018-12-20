@@ -13,14 +13,24 @@ namespace Getting_Real_Projekt
 
         private List<string> menuList = new List<string>()
         {
-            "1. Opret reservation",
-            "2. Køb af entre",
-            "3. Vis data",
-            "4. Vis specifik data",
-            "5. Find reservation",
-            "6. Find Total køb ved specific dato",
-            "7. Nye priser",
-            "8. Køb af product",
+            "1. Køb af produkt",
+            "2. Find reservation",
+            "3. Nye priser",
+            "4. Total solgt på en dag",
+            "0. Afslut"
+        };
+
+        private List<string> buyProductMenu = new List<string>()
+        {
+            "1. Entre",
+            "2. Restaurent menu",
+            "3. Opret reservation",
+            "0. Afslut"
+        };
+        private List<string> newPriceMenu = new List<string>()
+        {
+            "1. Entre",
+            "2. Restaurent menu",
             "0. Afslut"
         };
 
@@ -39,34 +49,76 @@ namespace Getting_Real_Projekt
 
                 switch (selectedMenu)
                 {
-                    case "1. Opret reservation":
-                        CreateReservation();
+                    case "1. Køb af produkt":
+                        secondMenu();
                         break;
-                    case "2. Køb af entre":
-                        CreateEntry();
-                        break;
-                    case "3. Vis data":
-                        ReadData();
-                        break;
-                    case "4. Vis specifik data":
-                        ShowSpecificData();
-                        break;
-                    case "5. Find reservation":
+                    case "2. Find reservation":
                         FindReservation();
                         break;
-                    case "6. Find Total køb ved specific dato":
+                    case "3. Nye priser":
+                        thirdMenu();
+                        break;
+                    case "4. Total solgt på en dag":
                         FindTotalPurchases();
                         break;
-                    case "7. Nye priser":
-
-                        ChangePrice();
-                        break;
-                    case "8. Køb af product":
-                        BuyProduct();
-                        break;
-
                     case "0. Afslut":
                         running = false;
+                        break;
+                }
+            }
+        }
+        public void thirdMenu()
+        {
+            double input;
+            bool running = true;
+            Console.CursorVisible = false;
+            while (running)
+            {
+                string SelectedMenu = RunMenu(newPriceMenu);
+                switch (SelectedMenu)
+                {
+                    case "1. Entre":
+                        Console.WriteLine("Hvad skal den nye pris for entre være?");
+                        Console.CursorVisible = true;
+                        input = double.Parse(Console.ReadLine());
+                        input = input * 0.75;
+                        ChangePrice(p[0], input);
+                        Console.CursorVisible = false;
+                        break;
+                    case "2. Restaurent menu":
+                        Console.WriteLine("Hvad skal den pris på menu'en være?");
+                        Console.CursorVisible = true;
+                        input = double.Parse(Console.ReadLine());
+                        ChangePrice(p[1], input);
+                        Console.CursorVisible = false;
+                        break;
+                    case "0. Afslut":
+                        Show();
+                        break;
+                }
+            }
+        }
+        
+        public void secondMenu()
+        {
+            bool running = true;
+            Console.CursorVisible = false;
+            while (running)
+            {
+                string SelectedMenu = RunMenu(buyProductMenu);
+                switch (SelectedMenu)
+                {
+                    case "1. Entre":
+                        CreateEntry();
+                        break;
+                    case "2. Restaurent menu":
+                        BuyProduct();
+                        break;
+                    case "3. Opret reservation":
+                        CreateReservation();
+                        break;
+                    case "0. Afslut":
+                        Show();
                         break;
                 }
             }
@@ -76,17 +128,17 @@ namespace Getting_Real_Projekt
         {
             for (int i = 0; i < menu.Count; i++)
             {
-                if (i.Equals(index))
-                {
-                    Console.BackgroundColor = ConsoleColor.Gray;
-                    Console.ForegroundColor = ConsoleColor.Black;
-                    Console.WriteLine(menu[i]);
-                }
-                else
-                {
-                    Console.WriteLine(menu[i]);
-                }
-                Console.ResetColor();
+               if (i.Equals(index))
+               {
+                   Console.BackgroundColor = ConsoleColor.Gray;
+                   Console.ForegroundColor = ConsoleColor.Black;
+                   Console.WriteLine(menu[i]);
+               }
+               else
+               {
+                   Console.WriteLine(menu[i]);
+               }
+               Console.ResetColor();
             }
             Console.WriteLine("\n");
             Console.WriteLine("---------------");
@@ -135,7 +187,7 @@ namespace Getting_Real_Projekt
             DateTime date = DateTime.Parse(time);
             Console.WriteLine("Antal personer");
             numberOfPersons = int.Parse(Console.ReadLine());
-            spWorked = control.InsertReservation(name, tlf, date, numberOfPersons);
+            spWorked =  control.InsertReservation(name, tlf, date, numberOfPersons);
             Console.WriteLine("\n");
             Console.WriteLine("Reservation er nu oprettet til den: " + time);
             Console.CursorVisible = false;
@@ -152,7 +204,7 @@ namespace Getting_Real_Projekt
             int amount = int.Parse(Console.ReadLine());
             double total = 0.0;
             total = amount * p[0].Price;
-            spWorked = control.InsertEntry(date, amount, total);
+            spWorked = control.InsertEntry(date, amount,total);
             Console.WriteLine("\n");
             Console.WriteLine("Der er købt " + amount + " entre på dato'en " + date);
             Console.WriteLine("\n");
@@ -179,7 +231,7 @@ namespace Getting_Real_Projekt
             time = Console.ReadLine();
             DateTime date = DateTime.Parse(time);
             Console.WriteLine("\n");
-            spWorked = control.ReadSpecificData(date);
+            spWorked=control.ReadSpecificData(date);
             Console.WriteLine("\n");
             Console.CursorVisible = false;
             SpCheck();
@@ -209,7 +261,7 @@ namespace Getting_Real_Projekt
                     Console.WriteLine("Skriv et Navn");
                     name = Console.ReadLine();
                     Console.Clear();
-                    spWorked = control.FindReservation(DateTime.Parse("1910-01-01"), name);
+                    spWorked = control.FindReservation(DateTime.Parse("1910-01-01"),name);
                     Console.WriteLine("\n");
                     break;
                 case "3":
@@ -253,10 +305,9 @@ namespace Getting_Real_Projekt
             SpCheck();
         }
 
-        public void ChangePrice()
+        public void ChangePrice(Product pro, double newPrice)
         {
-
-            control.ChangePrices(p);
+            control.ChangePrices(pro, newPrice);
         }
 
         public void SpCheck()
@@ -276,10 +327,7 @@ namespace Getting_Real_Projekt
 
         public void GetProducts()
         {
-
             p = control.GetProducts();
-
-
         }
 
         public void BuyProduct()
@@ -288,21 +336,21 @@ namespace Getting_Real_Projekt
             {
                 GetProducts();
             }
-            Console.WriteLine(">>> Køb af product <<<");
+            Console.WriteLine(">>> Køb af Menu <<<");
             Console.WriteLine("\n");
             DateTime date = DateTime.Now;
 
-            Console.WriteLine("Hvilke Product? ");
-            int productId = int.Parse(Console.ReadLine()) - 1;
-            Console.WriteLine("Hvor mange? ");
 
+            int productId = 5;
+            Console.WriteLine("Hvor mange? ");
+            
             Console.CursorVisible = true;
             int amount = int.Parse(Console.ReadLine());
             double total = 0.0;
             total = amount * p[productId].Price;
-            spWorked = control.BuyProduct(date, amount, total, productId);
+            spWorked = control.BuyProduct(date, amount, total,productId);
             Console.WriteLine("\n");
-            Console.WriteLine("Der er købt " + amount + " " + p[productId].Name + " på dato'en " + date);
+            Console.WriteLine("Der er købt " + amount +  " " + p[productId].Name + " på dato'en " + date);
             Console.WriteLine("\n");
             Console.CursorVisible = false;
             SpCheck();

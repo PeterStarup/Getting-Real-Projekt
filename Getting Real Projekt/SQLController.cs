@@ -254,22 +254,24 @@ namespace Getting_Real_Projekt
                 {
                     con.Open();
 
-                    SqlCommand cmd = new SqlCommand("spGRShowPurchasesByDate", con);
+                    SqlCommand cmd = new SqlCommand("spGRTEST", con);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Date", d);
 
                     SqlDataReader read = cmd.ExecuteReader();
-
+                    double totalPris = 0;
                     if(read.HasRows)
                     {
+                        Console.WriteLine(String.Format("|{0,-20}|{1,-20}|{2,-20}|", "Produkt navn:", "Antal:", "Pris:"));
                         while (read.Read())
                         {
                             string productName = read["ProductName"].ToString();
-                            string productPrice = read["SumOfPrice"].ToString();
-                            string numberOfItems = read["SumOfItems"].ToString();
-
-                            Console.WriteLine($"Product name: {productName}| Total product price: {productPrice}| Number of items: {numberOfItems}");
+                            string productPrice = read["TotalPris"].ToString();
+                            string numberOfItems = read["NumberOfItems"].ToString();
+                            Console.WriteLine(String.Format("|{0,-20}|{1,-20}|{2,-20}|", productName, numberOfItems, productPrice));
+                            totalPris += double.Parse(productPrice);
                         }
+                        Console.WriteLine(String.Format("|{0,41}|{1,-20}|", ">>>>Total Pris<<<<:", totalPris));
                     }
 
                     if (!read.HasRows)
@@ -320,7 +322,7 @@ namespace Getting_Real_Projekt
                             
                             string productName = read["ProductName"].ToString();
                             string productPrice = read["ProductPrice"].ToString() + ".0";
-                            double douprice = Convert.ToDouble(productPrice);
+                            double douprice = double.Parse(productPrice, System.Globalization.CultureInfo.InvariantCulture);
                             p.Add(new Product { Name = productName, Price = douprice });
                         }
                     }
