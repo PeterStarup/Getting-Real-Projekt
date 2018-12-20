@@ -58,7 +58,7 @@ namespace Getting_Real_Projekt
                         FindTotalPurchases();
                         break;
                     case "7. Nye priser":
-                        
+
                         ChangePrice();
                         break;
                     case "8. Køb af product":
@@ -95,7 +95,7 @@ namespace Getting_Real_Projekt
 
             if (ckey.Key.Equals(ConsoleKey.DownArrow))
             {
-                if (index < menu.Count -1)
+                if (index < menu.Count - 1)
                 {
                     index++;
                 }
@@ -135,7 +135,7 @@ namespace Getting_Real_Projekt
             DateTime date = DateTime.Parse(time);
             Console.WriteLine("Antal personer");
             numberOfPersons = int.Parse(Console.ReadLine());
-            spWorked =  control.InsertReservation(name, tlf, date, numberOfPersons);
+            spWorked = control.InsertReservation(name, tlf, date, numberOfPersons);
             Console.WriteLine("\n");
             Console.WriteLine("Reservation er nu oprettet til den: " + time);
             Console.CursorVisible = false;
@@ -152,7 +152,7 @@ namespace Getting_Real_Projekt
             int amount = int.Parse(Console.ReadLine());
             double total = 0.0;
             total = amount * p[0].Price;
-            spWorked = control.InsertEntry(date, amount,total);
+            spWorked = control.InsertEntry(date, amount, total);
             Console.WriteLine("\n");
             Console.WriteLine("Der er købt " + amount + " entre på dato'en " + date);
             Console.WriteLine("\n");
@@ -179,7 +179,7 @@ namespace Getting_Real_Projekt
             time = Console.ReadLine();
             DateTime date = DateTime.Parse(time);
             Console.WriteLine("\n");
-            spWorked=control.ReadSpecificData(date);
+            spWorked = control.ReadSpecificData(date);
             Console.WriteLine("\n");
             Console.CursorVisible = false;
             SpCheck();
@@ -209,7 +209,7 @@ namespace Getting_Real_Projekt
                     Console.WriteLine("Skriv et Navn");
                     name = Console.ReadLine();
                     Console.Clear();
-                    spWorked = control.FindReservation(DateTime.Parse("1910-01-01"),name);
+                    spWorked = control.FindReservation(DateTime.Parse("1910-01-01"), name);
                     Console.WriteLine("\n");
                     break;
                 case "3":
@@ -255,7 +255,7 @@ namespace Getting_Real_Projekt
 
         public void ChangePrice()
         {
-           
+
             control.ChangePrices(p);
         }
 
@@ -278,8 +278,8 @@ namespace Getting_Real_Projekt
         {
 
             p = control.GetProducts();
-           
-            
+
+
         }
 
         public void BuyProduct()
@@ -293,16 +293,16 @@ namespace Getting_Real_Projekt
             DateTime date = DateTime.Now;
 
             Console.WriteLine("Hvilke Product? ");
-            int productId = int.Parse(Console.ReadLine()) -1;
+            int productId = int.Parse(Console.ReadLine()) - 1;
             Console.WriteLine("Hvor mange? ");
-            
+
             Console.CursorVisible = true;
             int amount = int.Parse(Console.ReadLine());
             double total = 0.0;
             total = amount * p[productId].Price;
-            spWorked = control.BuyProduct(date, amount, total,productId);
+            spWorked = control.BuyProduct(date, amount, total, productId);
             Console.WriteLine("\n");
-            Console.WriteLine("Der er købt " + amount +  " " + p[productId].Name + " på dato'en " + date);
+            Console.WriteLine("Der er købt " + amount + " " + p[productId].Name + " på dato'en " + date);
             Console.WriteLine("\n");
             Console.CursorVisible = false;
             SpCheck();

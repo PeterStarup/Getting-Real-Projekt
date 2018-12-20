@@ -320,7 +320,7 @@ namespace Getting_Real_Projekt
                             
                             string productName = read["ProductName"].ToString();
                             string productPrice = read["ProductPrice"].ToString() + ".0";
-                            double douprice = double.Parse(productPrice);
+                            double douprice = Convert.ToDouble(productPrice);
                             p.Add(new Product { Name = productName, Price = douprice });
                         }
                     }
