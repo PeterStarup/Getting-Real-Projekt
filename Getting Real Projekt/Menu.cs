@@ -85,7 +85,7 @@ namespace Getting_Real_Projekt
                         Console.WriteLine("Hvad skal den nye pris for entre være?");
                         Console.CursorVisible = true;
                         input = double.Parse(Console.ReadLine());
-                        input = input * 0.75;
+                        
                         ChangePrice(p[0], input);
                         Console.CursorVisible = false;
                         break;
