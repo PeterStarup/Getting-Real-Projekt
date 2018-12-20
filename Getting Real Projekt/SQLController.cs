@@ -311,7 +311,7 @@ namespace Getting_Real_Projekt
                     con.Open();
 
                     
-                    SqlCommand cmd = new SqlCommand("spGRShowAllProducts", con);
+                    SqlCommand cmd = new SqlCommand("spGRShowAllProdcuts", con);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     SqlDataReader read = cmd.ExecuteReader();

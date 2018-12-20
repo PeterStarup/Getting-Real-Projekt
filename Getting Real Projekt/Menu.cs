@@ -339,9 +339,16 @@ namespace Getting_Real_Projekt
             Console.WriteLine(">>> Køb af Menu <<<");
             Console.WriteLine("\n");
             DateTime date = DateTime.Now;
-
-
-            int productId = 1;
+            int productId = 0;
+            for (int i = 0; i < p.Count; i++)
+            {
+                if (p[i].Name == "MENU")
+                {
+                    productId = i;
+                }
+                
+            }
+            
             Console.WriteLine("Hvor mange? ");
             
             Console.CursorVisible = true;
@@ -349,7 +356,7 @@ namespace Getting_Real_Projekt
             double total = 0.0;
             double test = p[productId].Price;
             total = amount * p[productId].Price;
-            spWorked = control.BuyProduct(date, amount, total,productId);
+            spWorked = control.BuyProduct(date, amount, total,5);
             Console.WriteLine("\n");
             Console.WriteLine("Der er købt " + amount +  " " + p[productId].Name + " på dato'en " + date);
             Console.WriteLine("\n");

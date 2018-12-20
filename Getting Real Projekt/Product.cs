@@ -36,7 +36,7 @@ namespace Getting_Real_Projekt
         public double Id
         {
             get { return id; }
-            set { Id = value; }
+            set { id = value; }
         }
     }
 }
