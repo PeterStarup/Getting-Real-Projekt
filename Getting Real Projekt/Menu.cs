@@ -305,11 +305,8 @@ namespace Getting_Real_Projekt
             SpCheck();
         }
 
-        public void ChangePrice(Product pro, double newPrice)
-        {
-            control.ChangePrices(pro, newPrice);
-        }
-
+        public void ChangePrice(Product pro, double newPrice) => control.ChangePrices(pro, newPrice);
+        
         public void SpCheck()
         {
             if (spWorked == true)
