@@ -10,7 +10,7 @@ namespace Getting_Real_Projekt
     {
         private string name;
         private double price;
-
+        private double id;
         public string Name
         {
             get
@@ -32,6 +32,11 @@ namespace Getting_Real_Projekt
             {
                 price = value;
             }
+        }
+        public double Id
+        {
+            get { return id; }
+            set { Id = value; }
         }
     }
 }

@@ -322,8 +322,10 @@ namespace Getting_Real_Projekt
                             
                             string productName = read["ProductName"].ToString();
                             string productPrice = read["ProductPrice"].ToString() + ".0";
+                            string productId = read["ProductId"].ToString();
+                            double proId = double.Parse(productId, System.Globalization.CultureInfo.InvariantCulture);
                             double douprice = double.Parse(productPrice, System.Globalization.CultureInfo.InvariantCulture);
-                            p.Add(new Product { Name = productName, Price = douprice });
+                            p.Add(new Product { Name = productName, Price = douprice, Id = proId });
                         }
                     }
                     spWorked = true;
