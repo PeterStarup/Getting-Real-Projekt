@@ -347,6 +347,7 @@ namespace Getting_Real_Projekt
             Console.CursorVisible = true;
             int amount = int.Parse(Console.ReadLine());
             double total = 0.0;
+            double test = p[productId].Price;
             total = amount * p[productId].Price;
             spWorked = control.BuyProduct(date, amount, total,productId);
             Console.WriteLine("\n");
